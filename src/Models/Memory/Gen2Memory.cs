@@ -508,5 +508,10 @@ namespace Pokebot.Models.Memory
 
             return ((uint)subSeed << 8) | addSeed;
         }
+
+        public override FishingState GetFishingResult()
+        {
+            return FishingState.None;
+        }
     }
 }

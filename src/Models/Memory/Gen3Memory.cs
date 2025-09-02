@@ -591,5 +591,25 @@ namespace Pokebot.Models.Memory
             //var bytes = SymbolUtil.Read(APIContainer, ptr, 0, symbol.Size);
             return SymbolUtil.Read(APIContainer, GetSaveBlock2Address(), 0x0C, 2).ToUInt16();
         }
+
+        public override FishingState GetFishingResult()
+        {
+            if (GetTasks().FirstOrDefault(t => t.Name == "Task_ContinueTaskAfterMessagePrints") != null)
+            {
+                return FishingState.InvalidTool;
+            }
+
+            var task = GetTasks().FirstOrDefault(t => t.Name == "Task_Fishing");
+            if (task == null)
+            {
+                return FishingState.NotFishing;
+            }
+            else if (task.Data[0] == (int)FishingResult.FISHING_STATE_REEL_WINDOW || task.Data[0] == (int)FishingResult.FISHING_STATE_START_ENCOUNTER || task.Data[0] == (int)FishingResult.FISHING_STATE_CLEANUP)
+            {
+                return FishingState.NeedAction;
+            }
+
+            return FishingState.None;
+        }
     }
 }

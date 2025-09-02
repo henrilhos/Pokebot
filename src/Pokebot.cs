@@ -108,7 +108,11 @@ namespace Pokebot
             _tabControl.Hide();
 
             CreateTabPages();
+        }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
             var worker = new BackgroundWorker();
             worker.DoWork += GetGithubLatestReleaseWorker;
             worker.RunWorkerAsync();

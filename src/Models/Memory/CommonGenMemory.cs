@@ -39,6 +39,7 @@ namespace Pokebot.Models.Memory
         public abstract ICollection<GTask> GetTasks();
         public abstract int GetTID();
         public abstract uint RandomizeCurrentSeed();
+        public abstract FishingState GetFishingResult();
 
         public IReadOnlyList<Symbol> GetSymbols()
         {

@@ -23,5 +23,6 @@ namespace Pokebot.Models.Memory
         int GetTID();
         int GetSID();
         IReadOnlyList<Symbol> GetSymbols();
+        FishingState GetFishingResult();
     }
 }
