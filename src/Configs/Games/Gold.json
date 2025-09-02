@@ -1,0 +1,104 @@
+{
+  "Name": "Gold",
+  "Code": 5,
+  "Hashs": [
+    {
+      "Hash": "d8b8a3600a465308c9953dfa04f0081c05bdcb94", //USA (Europe)
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokegold",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "8814f1039450a5d3684b1389f588ccd7ee7c3436", //Japan 1.0
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokegold",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "a222402235d484ee8e39f3f31bae57cf13daf585", //Japan 1.1
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokegold",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "162ea54c6a3cff374642e6dd842f9bffac847e7b", //Spanish
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokegold",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "9254195d461ea942eaaa08cc4b83de3cf82aea0d", //German
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokegold",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "c147c0d8c2b71b7628a7233436f5c052b5b17081", //French
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokegold",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "032608fe8947b627584a4a0eccc7bf9ad3588426", //Italian
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokegold",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "c0ff3999e1093e1af59ef3eea3f1bfd7c1f18a65", //Korean
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokegold",
+        "Patches": []
+      }
+    }
+  ],
+  "Generation": 2,
+  "Starters": [
+    {
+      "PositionIndex": 0,
+      "PokemonId": 155
+    },
+    {
+      "PositionIndex": 1,
+      "PokemonId": 158
+    },
+    {
+      "PositionIndex": 2,
+      "PokemonId": 152
+    }
+  ],
+  "PokeFinderTypes": [
+    {
+      "Name": "None",
+      "FrameAdvance": 0
+    },
+    {
+      "Name": "Starter",
+      "FrameAdvance": 10
+    }
+  ],
+  "BotsConfig": {
+    "Starter": {
+      "Position": {
+        "X": 11,
+        "Y": 8
+      },
+      "Facing": 34
+    }
+  }
+}

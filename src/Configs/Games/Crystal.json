@@ -1,0 +1,104 @@
+{
+  "Name": "Crystal",
+  "Code": 6,
+  "Hashs": [
+    {
+      "Hash": "f4cd194bdee0d04ca4eac29e09b8e4e9d818c133", //USA (Europe) 1.0
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokecrystal",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "f2f52230b536214ef7c9924f483392993e226cfb", //USA (Europe) 1.1
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokecrystal",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "95127b901bbce2407daf43cce9f45d4c27ef635d", //Japan
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokecrystal",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "a0fc810f1d4e124434f7be2c989ab5b5892ddf36", //A
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokecrystal",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "889a06fc0bb863666865aa69def0adf97945ac2a", //Spanish
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokecrystal",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "accb584293ba056152f1fd908439b019017ff2fe", //German
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokecrystal",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "c055992b16b7399c687647725cdd1f4f13a2f75c", //French
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokecrystal",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "6cee05e5b95beeae74b8365ad18ec4a07a8c4af8", //Italian
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokecrystal",
+        "Patches": []
+      }
+    }
+  ],
+  "Generation": 2,
+  "Starters": [
+    {
+      "PositionIndex": 0,
+      "PokemonId": 155
+    },
+    {
+      "PositionIndex": 1,
+      "PokemonId": 158
+    },
+    {
+      "PositionIndex": 2,
+      "PokemonId": 152
+    }
+  ],
+  "PokeFinderTypes": [
+    {
+      "Name": "None",
+      "FrameAdvance": 0
+    },
+    {
+      "Name": "Starter",
+      "FrameAdvance": 10
+    }
+  ],
+  "BotsConfig": {
+    "Starter": {
+      "Position": {
+        "X": 11,
+        "Y": 8
+      },
+      "Facing": 34
+    }
+  }
+}

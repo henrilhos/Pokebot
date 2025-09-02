@@ -1,0 +1,16 @@
+SystemID GB
+00D20D	b	u	0	System Bus	player X
+00D20E	b	u	0	System Bus	player Y
+00CF2E	b	u	0	System Bus	player direction (+ not moving)
+00D205	b	u	0	System Bus	player direction
+00D20A	b	u	0	System Bus	player facing
+00D200	b	u	0	System Bus	player mov type
+00DA00	b	u	0	System Bus	map group
+00DA01	b	u	0	System Bus	map number
+00D201	b	u	0	System Bus	player flags
+00D1FD	b	u	0	System Bus	player sprite
+00D119	b	u	0	System Bus	battle type
+00CEAB	b	u	0	System Bus	wMenuSelection
+00CEBF	b	u	0	System Bus	wMenuCursorPosition
+00C5D4	b	u	0	System Bus	wNamingScreenType
+

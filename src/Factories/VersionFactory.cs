@@ -4,19 +4,15 @@ using Pokebot.Factories.Versions;
 using Pokebot.Models.ActionRunners;
 using Pokebot.Models.Config;
 using Pokebot.Models.Memory;
-using Pokebot.Properties;
 using System;
 using System.Linq;
-using System.Text;
 
 namespace Pokebot.Factories
 {
     public static class VersionFactory
     {
-        public static GameVersion Create(ApiContainer apiContainer, string hash)
+        public static GameVersion Create(AppConfig config, ApiContainer apiContainer, string hash)
         {
-            var configText = Encoding.UTF8.GetString(Resources.appconfig);
-            var config = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.Config.AppConfig>(configText);
             if (config != null)
             {
                 var tupleVersion = config.Versions.Select(x =>
@@ -59,6 +55,12 @@ namespace Pokebot.Factories
                             case VersionCode.FireRed:
                                 memory = new Gen3Memory(apiContainer, version, hashData, generation);
                                 runner = new FireRedLeafGreenActionRunner(apiContainer, memory);
+                                break;
+                            case VersionCode.Gold:
+                            case VersionCode.Silver:
+                            case VersionCode.Crystal:
+                                memory = new Gen2Memory(apiContainer, version, hashData, generation);
+                                runner = new GoldSilverActionRunner(apiContainer, memory);
                                 break;
                         }
 

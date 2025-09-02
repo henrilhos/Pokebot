@@ -1,7 +1,6 @@
 ﻿using BizHawk.Client.Common;
 using BizHawk.Client.EmuHawk;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Pokebot.Exceptions;
 using Pokebot.Factories;
 using Pokebot.Factories.Bots;
@@ -14,19 +13,14 @@ using Pokebot.Panels;
 using Pokebot.Properties;
 using Pokebot.Services.DiscordWebhook;
 using Pokebot.Services.Github;
-using Pokebot.Utils;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Threading;
-using static System.Windows.Forms.AxHost;
 using Log = Pokebot.Utils.Log;
 
 namespace Pokebot
@@ -94,6 +88,17 @@ namespace Pokebot
 
             var configText = Encoding.UTF8.GetString(Resources.appconfig);
             AppConfig = JsonConvert.DeserializeObject<AppConfig>(configText)!;
+            AppConfig.Generations.Add(GetGeneration(Resources.Gen2));
+            AppConfig.Generations.Add(GetGeneration(Resources.Gen3));
+            AppConfig.Versions.Add(GetVersionInfo(Resources.Gold));
+            AppConfig.Versions.Add(GetVersionInfo(Resources.Silver));
+            AppConfig.Versions.Add(GetVersionInfo(Resources.Crystal));
+            AppConfig.Versions.Add(GetVersionInfo(Resources.LeafGreen));
+            AppConfig.Versions.Add(GetVersionInfo(Resources.FireRed));
+            AppConfig.Versions.Add(GetVersionInfo(Resources.Ruby));
+            AppConfig.Versions.Add(GetVersionInfo(Resources.Saphire));
+            AppConfig.Versions.Add(GetVersionInfo(Resources.Emerald));
+
             GithubServices = new GithubServices(AppConfig.Github.Url);
             PokebotVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
 
@@ -107,6 +112,18 @@ namespace Pokebot
             var worker = new BackgroundWorker();
             worker.DoWork += GetGithubLatestReleaseWorker;
             worker.RunWorkerAsync();
+        }
+
+        private GenerationInfo GetGeneration(byte[] data)
+        {
+            var json = Encoding.UTF8.GetString(data);
+            return JsonConvert.DeserializeObject<GenerationInfo>(json)!;
+        }
+
+        private VersionInfo GetVersionInfo(byte[] data)
+        {
+            var json = Encoding.UTF8.GetString(data);
+            return JsonConvert.DeserializeObject<VersionInfo>(json)!;
         }
 
         private async void GetGithubLatestReleaseWorker(object sender, DoWorkEventArgs e)
@@ -143,13 +160,15 @@ namespace Pokebot
             SettingsPanel_SettingsConfigChanged(SettingsPanel!.SettingsConfig);
 
 #if DEBUG
-            try {
+            try
+            {
                 if (APIContainer != null && DebugWindow == null)
                 {
                     DebugWindow = new PokebotDebug(APIContainer);
                     DebugWindow.Show();
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Log.Error("Can't load debug window: " + ex.Message);
             }
@@ -235,10 +254,11 @@ namespace Pokebot
                         if (isEmpty)
                         {
                             SetStatus(Messages.Rom_NotLoaded, Color.Red);
+                            _testedStatus.Text = string.Empty;
                         }
                         else
                         {
-                            GameVersion = VersionFactory.Create(APIContainer, gameInfo.Hash);
+                            GameVersion = VersionFactory.Create(AppConfig, APIContainer, gameInfo.Hash);
 #if DEBUG
                             if (DebugWindow != null)
                             {
@@ -247,6 +267,7 @@ namespace Pokebot
                             }
 #endif
                             SetStatus(romName);
+                            _testedStatus.Text = string.Format(Messages.Status_Tested, GameVersion.HashData.Tested ? '✅' : '❌');
                             Log.Info(string.Format(Messages.Rom_Loaded, romName));
                             IsRomLoaded = true;
                         }
@@ -256,6 +277,7 @@ namespace Pokebot
             catch (NotSupportedException ex)
             {
                 SetStatus(ex.Message, Color.Red);
+                _testedStatus.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -363,7 +385,8 @@ namespace Pokebot
             if (string.IsNullOrWhiteSpace(settingsConfig.DiscordWebhook))
             {
                 DiscordWebhookServices = null;
-            } else
+            }
+            else
             {
                 DiscordWebhookServices = new DiscordWebhookServices(settingsConfig.DiscordWebhook, settingsConfig.DiscordUserID);
             }
@@ -389,7 +412,7 @@ namespace Pokebot
             {
                 BotPanel.ClearPanel();
 
-                Bot = BotFactory.Create(code, APIContainer!, GameVersion!); 
+                Bot = BotFactory.Create(code, APIContainer!, GameVersion!);
                 Bot.StateChanged += Bot_StateChanged;
                 Bot.PokemonEncountered += Bot_PokemonEncountered;
                 Bot.PokemonFound += Bot_PokemonFound;

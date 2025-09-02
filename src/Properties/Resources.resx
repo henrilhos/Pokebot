@@ -121,4 +121,34 @@
   <data name="appconfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\appconfig.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Crystal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Games\Crystal.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Emerald" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Games\Emerald.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FireRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Games\FireRed.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Gen2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Generations\Gen2.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Gen3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Generations\Gen3.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Games\Gold.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LeafGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Games\LeafGreen.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ruby" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Games\Ruby.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Saphire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Games\Saphire.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Silver" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configs\Games\Silver.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

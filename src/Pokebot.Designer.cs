@@ -36,31 +36,35 @@
             this._newVersionLabel = new System.Windows.Forms.Label();
             this._bugButton = new System.Windows.Forms.Button();
             this._joinDiscordButton = new System.Windows.Forms.Button();
+            this._testedStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // _statusLabel
             // 
             this._statusLabel.AutoSize = true;
-            this._statusLabel.Location = new System.Drawing.Point(12, 37);
+            this._statusLabel.Location = new System.Drawing.Point(9, 30);
+            this._statusLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._statusLabel.Name = "_statusLabel";
-            this._statusLabel.Size = new System.Drawing.Size(105, 16);
+            this._statusLabel.Size = new System.Drawing.Size(84, 13);
             this._statusLabel.TabIndex = 0;
             this._statusLabel.Text = "No ROM loaded";
             // 
             // _tabControl
             // 
-            this._tabControl.Location = new System.Drawing.Point(12, 68);
+            this._tabControl.Location = new System.Drawing.Point(9, 62);
+            this._tabControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._tabControl.Name = "_tabControl";
             this._tabControl.SelectedIndex = 0;
-            this._tabControl.Size = new System.Drawing.Size(776, 370);
+            this._tabControl.Size = new System.Drawing.Size(582, 309);
             this._tabControl.TabIndex = 3;
             // 
             // _versionLabel
             // 
             this._versionLabel.AutoSize = true;
-            this._versionLabel.Location = new System.Drawing.Point(12, 9);
+            this._versionLabel.Location = new System.Drawing.Point(9, 7);
+            this._versionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._versionLabel.Name = "_versionLabel";
-            this._versionLabel.Size = new System.Drawing.Size(68, 16);
+            this._versionLabel.Size = new System.Drawing.Size(56, 13);
             this._versionLabel.TabIndex = 3;
             this._versionLabel.Text = "Pokebot v";
             // 
@@ -72,17 +76,19 @@
             // 
             this._newVersionLabel.AutoSize = true;
             this._newVersionLabel.ForeColor = System.Drawing.Color.Red;
-            this._newVersionLabel.Location = new System.Drawing.Point(148, 9);
+            this._newVersionLabel.Location = new System.Drawing.Point(111, 7);
+            this._newVersionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._newVersionLabel.Name = "_newVersionLabel";
-            this._newVersionLabel.Size = new System.Drawing.Size(117, 16);
+            this._newVersionLabel.Size = new System.Drawing.Size(97, 13);
             this._newVersionLabel.TabIndex = 4;
             this._newVersionLabel.Text = "new version check";
             // 
             // _bugButton
             // 
-            this._bugButton.Location = new System.Drawing.Point(713, 34);
+            this._bugButton.Location = new System.Drawing.Point(535, 28);
+            this._bugButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._bugButton.Name = "_bugButton";
-            this._bugButton.Size = new System.Drawing.Size(75, 28);
+            this._bugButton.Size = new System.Drawing.Size(56, 23);
             this._bugButton.TabIndex = 5;
             this._bugButton.Text = "Bug";
             this._bugButton.UseVisualStyleBackColor = true;
@@ -90,19 +96,33 @@
             // 
             // _joinDiscordButton
             // 
-            this._joinDiscordButton.Location = new System.Drawing.Point(571, 34);
+            this._joinDiscordButton.Location = new System.Drawing.Point(428, 28);
+            this._joinDiscordButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._joinDiscordButton.Name = "_joinDiscordButton";
-            this._joinDiscordButton.Size = new System.Drawing.Size(136, 28);
+            this._joinDiscordButton.Size = new System.Drawing.Size(102, 23);
             this._joinDiscordButton.TabIndex = 6;
             this._joinDiscordButton.Text = "Join Discord";
             this._joinDiscordButton.UseVisualStyleBackColor = true;
             this._joinDiscordButton.Click += new System.EventHandler(this._joinDiscordButton_Click);
             // 
+            // _testedStatus
+            // 
+            this._testedStatus.AutoSize = true;
+            this._testedStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._testedStatus.ForeColor = System.Drawing.Color.DarkGray;
+            this._testedStatus.Location = new System.Drawing.Point(11, 47);
+            this._testedStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this._testedStatus.Name = "_testedStatus";
+            this._testedStatus.Size = new System.Drawing.Size(82, 13);
+            this._testedStatus.TabIndex = 7;
+            this._testedStatus.Text = "No ROM loaded";
+            // 
             // Pokebot
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 382);
+            this.Controls.Add(this._testedStatus);
             this.Controls.Add(this._joinDiscordButton);
             this.Controls.Add(this._bugButton);
             this.Controls.Add(this._newVersionLabel);
@@ -110,6 +130,7 @@
             this.Controls.Add(this._versionLabel);
             this.Controls.Add(this._statusLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Pokebot";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,5 +146,6 @@
         private System.Windows.Forms.Label _newVersionLabel;
         private System.Windows.Forms.Button _bugButton;
         private System.Windows.Forms.Button _joinDiscordButton;
+        private System.Windows.Forms.Label _testedStatus;
     }
 }

@@ -145,6 +145,9 @@
   <data name="patchsapphire_fr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sapphire\patchsapphire_fr.sym;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="pokecrystal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>crystal\pokecrystal.sym;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="pokeemerald" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emerald\pokeemerald.sym;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -153,6 +156,9 @@
   </data>
   <data name="pokefirered_rev1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>firered_rev1\pokefirered_rev1.sym;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pokegold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gold\pokegold.sym;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="pokeleafgreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>leafgreen\pokeleafgreen.sym;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -177,5 +183,8 @@
   </data>
   <data name="pokesapphire_rev2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sapphire_rev2\pokesapphire_rev2.sym;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pokesilver" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>silver\pokesilver.sym;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -583,6 +583,15 @@ namespace Pokebot {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tested: {0}.
+        /// </summary>
+        internal static string Status_Tested {
+            get {
+                return ResourceManager.GetString("Status_Tested", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No symbols found for this game..
         /// </summary>
         internal static string Symbols_Empty {

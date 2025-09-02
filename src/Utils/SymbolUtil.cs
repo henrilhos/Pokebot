@@ -9,19 +9,19 @@ namespace Pokebot.Utils
 {
     public static class SymbolUtil
     {
-        public static IReadOnlyList<byte> Read(ApiContainer api, long address, int offset = 0x0, int size = 0x0)
+        public static IReadOnlyList<byte> Read(ApiContainer api, long address, int offset = 0x0, int size = 0x0, string? domain = null)
         {
-            return api.Memory.ReadByteRange(address + offset, size);
+            return api.Memory.ReadByteRange(address + offset, size, domain);
         }
 
         public static IReadOnlyList<byte> Read(ApiContainer api, Symbol symbol)
         {
-            return Read(api, symbol.Address, 0, symbol.Size);
+            return Read(api, symbol.Address, 0, symbol.Size, symbol.Domain);
         }
 
-        public static IReadOnlyList<byte> Read(ApiContainer api, Symbol symbol, int offset = 0x0, int size = 0x0)
+        public static IReadOnlyList<byte> Read(ApiContainer api, Symbol symbol, int offset = 0x0, int size = 0x0, string? domain = null)
         {
-            return Read(api, symbol.Address, offset, size);
+            return Read(api, symbol.Address, offset, size, domain);
         }
 
         public static void Write(ApiContainer api, Symbol symbol, byte[] bytes)
@@ -39,7 +39,7 @@ namespace Pokebot.Utils
                 if (string.IsNullOrEmpty(line) || line.StartsWith("#") || line.StartsWith("\r")) continue;
 
                 var arguments = line.Split(' ');
-                if (arguments.Count() != 4)
+                if (arguments.Count() < 4)
                 {
                     throw new Exception("File invalid, missing arguments for line " + line);
                 }
@@ -49,9 +49,10 @@ namespace Pokebot.Utils
                     int address = Convert.ToInt32(arguments[0], 16);
                     char letter = Convert.ToChar(arguments[1]);
                     int size = Convert.ToInt32(arguments[2], 16);
-                    string name = arguments[3].Replace("\r", ""); ;
+                    string name = arguments[3].Replace("\r", "");
+                    string? domain = arguments.Count() > 4 ? arguments[4].Replace("\r", "") : null;
 
-                    symbols.Add(new Symbol(address, letter, size, name));
+                    symbols.Add(new Symbol(address, letter, size, name, domain));
                 }
                 catch (Exception)
                 {

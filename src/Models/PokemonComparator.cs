@@ -48,7 +48,7 @@ namespace Pokebot.Models
                 return false;
             }
 
-            if (IndexNature != -1 && pokemon.Nature.Id != IndexNature)
+            if (IndexNature != -1 && pokemon.Nature != null && pokemon.Nature.Id != IndexNature)
             {
                 return false;
             }
@@ -63,7 +63,7 @@ namespace Pokebot.Models
                 return false;
             }
 
-            if (PokemonGender != -1 && (int) pokemon.Gender != PokemonGender)
+            if (PokemonGender != -1 && (int)pokemon.Gender != PokemonGender)
             {
                 return false;
             }

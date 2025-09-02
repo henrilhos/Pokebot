@@ -14,8 +14,6 @@ namespace Pokebot.Models.Memory
         int GetPartyCount();
         IReadOnlyList<Pokemon> GetParty();
         Pokemon GetOpponent();
-        Pokemon ParsePokemon(byte[] bytesPokemon);
-        PlayerData ParsePlayer(byte[] bytesGPlayer, byte[] bytesGPlayerPosition);
         PlayerData GetPlayer();
         GameState GetGameState();
         ICollection<GTask> GetTasks();

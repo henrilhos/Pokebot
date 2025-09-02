@@ -22,9 +22,9 @@ namespace Pokebot.Panels
             }
             _pokemonName.Text = sb.ToString();
             _pid.Text = string.Format(Messages.Viewer_PID, pokemon.PID.ToString("X"));
-            _natureLabel.Text = string.Format(Messages.Viewer_Nature, pokemon.Nature.Name);
-            _abilityLabel.Text = string.Format(Messages.Viewer_Ability, pokemon.Ability);
-            _hiddenPowerType.Text = string.Format(Messages.Viewer_HiddenPowerType, pokemon.HiddenPower.Name);
+            _natureLabel.Text = string.Format(Messages.Viewer_Nature, pokemon.Nature?.Name ?? "N/A");
+            _abilityLabel.Text = string.Format(Messages.Viewer_Ability, pokemon.Ability ?? "N/A");
+            _hiddenPowerType.Text = string.Format(Messages.Viewer_HiddenPowerType, pokemon.HiddenPower?.Name ?? "N/A");
             _hiddenPowerDamage.Text = string.Format(Messages.Viewer_HiddenPowerDamage, pokemon.HiddenPowerDamage);
             _itemLabel.Text = string.Format(Messages.Viewer_Item, pokemon.HeldItem?.Name ?? Messages.Item_Nothing);
             var imageName = pokemon.RealName.ToLower().Replace("-", "_");

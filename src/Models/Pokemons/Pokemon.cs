@@ -5,7 +5,7 @@ namespace Pokebot.Models.Pokemons
     public class Pokemon
     {
         public uint PID { get; }
-        public PokemonOriginalTrainer OriginalTrainer { get; }
+        public PokemonOriginalTrainer? OriginalTrainer { get; }
         public string Nickname { get; }
         public PokemonLanguageCode Language { get; }
         public PokemonEggNameType EggName { get; }
@@ -25,29 +25,29 @@ namespace Pokebot.Models.Pokemons
 
         //EVs & Condition
         public PokemonEVS EVs { get; }
-        public PokemonCondition Conditions { get; }
+        public PokemonCondition? Conditions { get; }
 
         //Miscellaneous
-        public PokemonPokerus Pokerus { get; }
-        public PokemonLocation MetLocation { get; }
+        public PokemonPokerus? Pokerus { get; }
+        public PokemonLocation? MetLocation { get; }
         public int MetLevel { get; }
-        public PokemonOriginInfo Origin { get; }
+        public PokemonOriginInfo? Origin { get; }
         public PokemonIVS IVs { get; }
         public bool IsEgg { get; }
-        public PokemonRibbon Ribbons { get; }
+        public PokemonRibbon? Ribbons { get; }
 
         //Others ?
         public string RealName { get; }
         public int DexId { get; }
         public bool IsShiny { get; }
-        public PokemonNature Nature { get; }
+        public PokemonNature? Nature { get; }
         public List<PokemonType> Types { get; }
-        public string Ability { get; }
-        public PokemonType HiddenPower { get; }
+        public string? Ability { get; }
+        public PokemonType? HiddenPower { get; }
         public int HiddenPowerDamage { get; }
         public PokemonGender Gender { get; set; }
 
-        public Pokemon(uint pid, PokemonOriginalTrainer originalTrainer, string nickname, PokemonLanguageCode language, PokemonEggNameType eggName, PokemonMark markings, int checksum, int calculatedChecksum, int species, PokemonItem? heldItem, uint experience, int pPBonuses, int friendship, List<PokemonAttack> moves, PokemonEVS eVs, PokemonCondition conditions, PokemonPokerus pokerus, PokemonLocation metLocation, int metLevel, PokemonOriginInfo origin, PokemonIVS iVs, bool isEgg, PokemonRibbon ribbons, string realName, int dexId, bool isShiny, PokemonNature nature, List<PokemonType> types, string ability, PokemonType hiddenPower, int hiddenPowerDamage, PokemonGender gender)
+        public Pokemon(uint pid, PokemonOriginalTrainer? originalTrainer, string nickname, PokemonLanguageCode language, PokemonEggNameType eggName, PokemonMark markings, int checksum, int calculatedChecksum, int species, PokemonItem? heldItem, uint experience, int pPBonuses, int friendship, List<PokemonAttack> moves, PokemonEVS eVs, PokemonCondition? conditions, PokemonPokerus? pokerus, PokemonLocation? metLocation, int metLevel, PokemonOriginInfo? origin, PokemonIVS iVs, bool isEgg, PokemonRibbon? ribbons, string realName, int dexId, bool isShiny, PokemonNature? nature, List<PokemonType> types, string? ability, PokemonType? hiddenPower, int hiddenPowerDamage, PokemonGender gender)
         {
             PID = pid;
             OriginalTrainer = originalTrainer;

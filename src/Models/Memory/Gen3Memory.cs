@@ -2,25 +2,18 @@
 using Pokebot.Models.Config;
 using Pokebot.Models.Player;
 using Pokebot.Models.Pokemons;
-using Pokebot.Symbols;
 using Pokebot.Utils;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Pokebot.Models.Memory
 {
-    public class Gen3Memory : IGameMemory
+    public class Gen3Memory : CommonGenMemory
     {
-        public ApiContainer APIContainer { get; }
-        public IReadOnlyList<Symbol> Symbols { get; }
-        public VersionInfo VersionInfo { get; }
-        public HashData HashData { get; }
-        public GenerationInfo GenerationInfo { get; }
-
+        public Gen3Memory(ApiContainer apiContainer, VersionInfo versionInfo, HashData hashData, GenerationInfo generationInfo) :
+            base(apiContainer, versionInfo, hashData, generationInfo)
+        { }
 
         private static readonly string[] _subStructureTypes = new string[]
         {
@@ -28,78 +21,7 @@ namespace Pokebot.Models.Memory
             "EGAM", "EGMA", "EAGM", "EAMG", "EMGA", "EMAG", "MGAE", "MGEA", "MAGE", "MAEG", "MEGA", "MEAG"
         };
 
-        public Gen3Memory(ApiContainer apiContainer, VersionInfo versionInfo, HashData hashData, GenerationInfo generationInfo)
-        {
-            APIContainer = apiContainer;
-            VersionInfo = versionInfo;
-            HashData = hashData;
-            GenerationInfo = generationInfo;
-            Symbols = LoadSymbols(hashData);
-        }
-
-        private IReadOnlyList<Symbol> LoadSymbols(HashData hashData)
-        {
-            var symbols = new List<Symbol>();
-
-            //Load main symbol file
-            var mainFileData = ResourceSymbols.ResourceManager.GetObject(hashData.Symbols.Main);
-            if (mainFileData is byte[] mainBytes)
-            {
-                symbols = SymbolUtil.Load(mainBytes).ToList();
-
-                //Load and replace extra symbols if they exists
-                foreach (var file in hashData.Symbols.Patches)
-                {
-                    var data = ResourceSymbols.ResourceManager.GetObject(file);
-                    if (data is byte[] bytes)
-                    {
-                        var tempSymbols = SymbolUtil.Load(bytes);
-                        foreach (var tempSymbol in tempSymbols)
-                        {
-                            var symbolFound = symbols.FirstOrDefault(x => x.Name == tempSymbol.Name);
-                            if (symbolFound != null)
-                            {
-                                symbols.Remove(symbolFound);
-
-                                long address = tempSymbol.Address;
-                                char letter = symbolFound.Letter;
-                                string name = symbolFound.Name;
-                                int size;
-                                if (tempSymbol.Letter == 'c') //c is custom, no changes except for address
-                                {
-                                    size = symbolFound.Size;
-                                }
-                                else
-                                {
-                                    size = tempSymbol.Size;
-                                }
-
-                                symbols.Add(new Symbol(address, letter, size, name));
-                            } else if (tempSymbol.Letter == 'a') //add custom line
-                            {
-                                symbols.Add(tempSymbol);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return symbols;
-        }
-
-        private string GetBytesText(byte[] bytes)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (var b in bytes)
-            {
-                sb.Append(GenerationInfo.Characters[b]);
-            }
-
-            return sb.ToString();
-        }
-
-        public virtual Pokemon ParsePokemon(byte[] bytesPokemon)
+        protected Pokemon ParsePokemon(byte[] bytesPokemon)
         {
             #region Main Info
             //https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_data_structure_(Generation_III)
@@ -167,7 +89,6 @@ namespace Pokebot.Models.Memory
             //Gender
             var gSpeciesInfoSymbol = Symbols.First(x => x.Name == "gSpeciesInfo");
             var size = 0x1C;
-            var s2 = SymbolUtil.Read(APIContainer, gSpeciesInfoSymbol.Address, 4480, 100);
             var gSpeciesInfo = SymbolUtil.Read(APIContainer, gSpeciesInfoSymbol.Address, species * size, size);
             var genderRatio = gSpeciesInfo[0x10];
             var currentGenderRatio = PID & 0xFF;
@@ -188,7 +109,8 @@ namespace Pokebot.Models.Memory
                 if (genderRatio > currentGenderRatio)
                 {
                     gender = PokemonGender.Female;
-                } else
+                }
+                else
                 {
                     gender = PokemonGender.Male;
                 }
@@ -435,7 +357,7 @@ namespace Pokebot.Models.Memory
             );
         }
 
-        public virtual PlayerData ParsePlayer(byte[] bytesGPlayer, byte[] bytesObjects)
+        protected PlayerData ParsePlayer(byte[] bytesGPlayer, byte[] bytesObjects)
         {
             var runningState = (PlayerRunningState)bytesGPlayer[2];
             var transitionState = (TileTransitionState)bytesGPlayer[3];
@@ -451,7 +373,7 @@ namespace Pokebot.Models.Memory
             return new PlayerData(currentPosition, prevPosition, runningState, transitionState, gender, facingDirection);
         }
 
-        public virtual PlayerData GetPlayer()
+        public override PlayerData GetPlayer()
         {
             var avatarSymbol = Symbols.First(x => x.Name == "gPlayerAvatar");
             var objectSymbol = Symbols.First(x => x.Name == "gObjectEvents");
@@ -462,7 +384,7 @@ namespace Pokebot.Models.Memory
             return ParsePlayer(bytesAvatar, bytesObjects);
         }
 
-        public virtual GameState GetGameState()
+        public override GameState GetGameState()
         {
             var gMain = Symbols.First(x => x.Name == "gMain");
             var cb2Address = SymbolUtil.Read(APIContainer!, gMain.Address, 4, 4).ToUInt32();
@@ -518,13 +440,13 @@ namespace Pokebot.Models.Memory
             return GameState.Unknow;
         }
 
-        public virtual int GetPartyCount()
+        public override int GetPartyCount()
         {
             var partyCountSYM = Symbols.First(x => x.Name == "gPlayerPartyCount");
             return SymbolUtil.Read(APIContainer, partyCountSYM, 0, 1)[0];
         }
 
-        public virtual IReadOnlyList<Pokemon> GetParty()
+        public override IReadOnlyList<Pokemon> GetParty()
         {
             var list = new List<Pokemon>();
             var partySYM = Symbols.First(x => x.Name == "gPlayerParty");
@@ -540,7 +462,7 @@ namespace Pokebot.Models.Memory
             return list;
         }
 
-        public virtual Pokemon GetOpponent()
+        public override Pokemon GetOpponent()
         {
             var list = new List<Pokemon>();
             var partySYM = Symbols.First(x => x.Name == "gEnemyParty");
@@ -566,7 +488,7 @@ namespace Pokebot.Models.Memory
             return result;
         }
 
-        public ICollection<GTask> GetTasks()
+        public override ICollection<GTask> GetTasks()
         {
             var tasks = new List<GTask>();
             var gTasks = Symbols.First(x => x.Name == "gTasks");
@@ -609,7 +531,7 @@ namespace Pokebot.Models.Memory
             return tasks;
         }
 
-        public virtual int GetActionSelectionCursor()
+        public override int GetActionSelectionCursor()
         {
             var symbol = Symbols.First(x => x.Name == "gActionSelectionCursor");
             var bytes = SymbolUtil.Read(APIContainer, symbol, 0, 1);
@@ -617,13 +539,13 @@ namespace Pokebot.Models.Memory
             return bytes[0];
         }
 
-        public virtual uint GetCurrentSeed()
+        public override uint GetCurrentSeed()
         {
             var symbol = Symbols.First(x => x.Name == "gRngValue");
             return SymbolUtil.Read(APIContainer, symbol, 0, 4).ToUInt32();
         }
 
-        public virtual uint RandomizeCurrentSeed()
+        public override uint RandomizeCurrentSeed()
         {
             Random random = new Random();
             var bytes = new byte[4];
@@ -656,7 +578,7 @@ namespace Pokebot.Models.Memory
 
         //With Gen 3 you should follow the save block in memory using pointer
         //https://bulbapedia.bulbagarden.net/wiki/Save_data_structure_(Generation_III)#Game_save_A.2C_Game_save_B
-        public int GetTID()
+        public override int GetTID()
         {
             //var bytes = SymbolUtil.Read(APIContainer, ptr, 0, symbol.Size);
             return SymbolUtil.Read(APIContainer, GetSaveBlock2Address(), 0x0A, 2).ToUInt16();
@@ -664,15 +586,10 @@ namespace Pokebot.Models.Memory
 
         //With Gen 3 you should follow the save block in memory using pointer
         //https://bulbapedia.bulbagarden.net/wiki/Save_data_structure_(Generation_III)#Game_save_A.2C_Game_save_B
-        public int GetSID()
+        public override int GetSID()
         {
             //var bytes = SymbolUtil.Read(APIContainer, ptr, 0, symbol.Size);
             return SymbolUtil.Read(APIContainer, GetSaveBlock2Address(), 0x0C, 2).ToUInt16();
-        }
-
-        public IReadOnlyList<Symbol> GetSymbols()
-        {
-            return Symbols;
         }
     }
 }
