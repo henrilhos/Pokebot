@@ -155,7 +155,7 @@ namespace Pokebot
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex);
             }
         }
 
@@ -285,7 +285,7 @@ namespace Pokebot
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex);
                 IsRomLoaded = false;
             }
         }
@@ -333,11 +333,11 @@ namespace Pokebot
             catch (BotException ex)
             {
                 BotPanel.StopBot();
-                Log.Error(ex.Message);
+                Log.Error(ex);
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex);
             }
         }
 

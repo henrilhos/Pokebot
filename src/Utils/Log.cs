@@ -1,4 +1,5 @@
 ﻿using Pokebot.Models;
+using System;
 
 namespace Pokebot.Utils
 {
@@ -28,16 +29,21 @@ namespace Pokebot.Utils
             Send(LogLevel.Error, message);
         }
 
+        public static void Error(Exception exception)
+        {
+            Send(LogLevel.Error, exception.Message, exception);
+        }
+
         public static void Fatal(string message)
         {
             Send(LogLevel.Fatal, message);
         }
 
-        public static void Send(LogLevel level, string message)
+        public static void Send(LogLevel level, string message, Exception? exception = null)
         {
-            LogReceived?.Invoke(new LogEventArgs(level, message));
+            LogReceived?.Invoke(new LogEventArgs(level, message, exception));
         }
     }
 
-    public record LogEventArgs(LogLevel Level, string Message) { }
+    public record LogEventArgs(LogLevel Level, string Message, Exception? Exception = null) { }
 }
