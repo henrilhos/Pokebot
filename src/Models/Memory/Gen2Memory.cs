@@ -106,8 +106,13 @@ namespace Pokebot.Models.Memory
                 var bytesPokemon = SymbolUtil.Read(APIContainer, wPartyMon1.Address, offset, size);
                 var bytesNickname = SymbolUtil.Read(APIContainer, wPartyMon1Nickname.Address, i * wPartyMon1Nickname.Size, wPartyMon1Nickname.Size).TakeWhile(x => x != 0x50);
                 var bytesOT = SymbolUtil.Read(APIContainer, wPartyMonOTs.Address, i * wPartyMonOTs.Size, wPartyMonOTs.Size).TakeWhile(x => x != 0x50);
+                var pokemon = ParsePokemon(bytesPokemon.ToArray(), bytesNickname.ToArray(), bytesOT.ToArray());
+                if (pokemon == null)
+                {
+                    break;
+                }
 
-                list.Add(ParsePokemon(bytesPokemon.ToArray(), bytesNickname.ToArray(), bytesOT.ToArray()));
+                list.Add(pokemon);
             }
 
             return list;
@@ -131,7 +136,12 @@ namespace Pokebot.Models.Memory
             var wSpeciesInfo = GetSymbol("wSpeciesInfo");
             var speciesInfo = SymbolUtil.Read(APIContainer, wSpeciesInfo, (speciesId - 1) * wSpeciesInfo.Size, wSpeciesInfo.Size, wSpeciesInfo.Domain);
 
-            var species = GenerationInfo.Pokemons.First(x => x.Id == speciesId);
+            var species = GenerationInfo.Pokemons.FirstOrDefault(x => x.Id == speciesId);
+            if (species == null)
+            {
+                throw new Exception("Species not found for id " + speciesId);
+            }
+
             var heldItem = GenerationInfo.Items.FirstOrDefault(x => x.Id == bytesPokemon[0x01]);
             var t = SymbolUtil.Read(APIContainer, 0xd0f1, 0, 1)[0];
             var move1 = GenerationInfo.Moves.FirstOrDefault(x => x.Id == bytesPokemon[0x02]);
@@ -258,14 +268,23 @@ namespace Pokebot.Models.Memory
             );
         }
 
-        protected Pokemon ParsePokemon(byte[] bytesPokemon, byte[] bytesNickname, byte[] bytesOT)
+        protected Pokemon? ParsePokemon(byte[] bytesPokemon, byte[] bytesNickname, byte[] bytesOT)
         {
             var speciesId = bytesPokemon[0x00];
+            if (speciesId == 0)
+            {
+                return null;
+            }
 
             var wSpeciesInfo = GetSymbol("wSpeciesInfo");
             var speciesInfo = SymbolUtil.Read(APIContainer, wSpeciesInfo, (speciesId - 1) * wSpeciesInfo.Size, wSpeciesInfo.Size, wSpeciesInfo.Domain);
 
-            var species = GenerationInfo.Pokemons.First(x => x.Id == speciesId);
+            var species = GenerationInfo.Pokemons.FirstOrDefault(x => x.Id == speciesId);
+            if (species == null)
+            {
+                throw new Exception("Species not found for id " + speciesId);
+            }
+
             var heldItem = GenerationInfo.Items.FirstOrDefault(x => x.Id == bytesPokemon[0x01]);
             var move1 = GenerationInfo.Moves.FirstOrDefault(x => x.Id == bytesPokemon[0x02]);
             var move2 = GenerationInfo.Moves.FirstOrDefault(x => x.Id == bytesPokemon[0x03]);
