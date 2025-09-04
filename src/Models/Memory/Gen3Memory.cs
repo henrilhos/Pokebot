@@ -87,7 +87,7 @@ namespace Pokebot.Models.Memory
             var friendship = (int)subStructuresData['G'][9];
 
             //Gender
-            var gSpeciesInfoSymbol = Symbols.First(x => x.Name == "gSpeciesInfo");
+            var gSpeciesInfoSymbol = Symbols.FirstOrDefault(x => x.Name == "gSpeciesInfo" || x.Name == "gBaseStats");
             var size = 0x1C;
             var gSpeciesInfo = SymbolUtil.Read(APIContainer, gSpeciesInfoSymbol.Address, species * size, size);
             var genderRatio = gSpeciesInfo[0x10];
