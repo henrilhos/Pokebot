@@ -436,7 +436,9 @@ namespace Pokebot
         {
             if (DiscordWebhookServices != null)
             {
-                DiscordWebhookServices.SendPokemonWebhook(pokemon);
+                var stats = EncounterStatsPanel.GetPokemonStat(pokemon);
+                var gameInfo = APIContainer.Emulation.GetGameInfo();
+                DiscordWebhookServices.SendPokemonWebhook(pokemon, stats, GameVersion!, gameInfo);
             }
         }
 

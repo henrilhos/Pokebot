@@ -1,12 +1,5 @@
-﻿using Pokebot.Models.Pokemons;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pokebot.Models;
+using Pokebot.Models.Pokemons;
 using System.Windows.Forms;
 
 namespace Pokebot.Panels
@@ -21,6 +14,23 @@ namespace Pokebot.Panels
         public void Clear()
         {
             _statsListView.Items.Clear();
+        }
+
+        public EncounterStats GetPokemonStat(Pokemon pokemon)
+        {
+            for (int i = 0; i < _statsListView.Items.Count; i++)
+            {
+                var item = _statsListView.Items[i];
+                if (item != null && item.Text == pokemon.RealName)
+                {
+                    if (int.TryParse(item.SubItems[1].Text, out int encounters) && int.TryParse(item.SubItems[2].Text, out int shinyEncounters))
+                    {
+                        return new EncounterStats(encounters, shinyEncounters, GetRatio(shinyEncounters, encounters), pokemon);
+                    }
+                }
+            }
+
+            return new EncounterStats(0, 0, GetRatio(0, 0), pokemon);
         }
 
         public void AddPokemonStat(Pokemon pokemon)

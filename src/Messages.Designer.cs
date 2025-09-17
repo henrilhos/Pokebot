@@ -214,6 +214,42 @@ namespace Pokebot {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encountered.
+        /// </summary>
+        internal static string Discord_Encountered {
+            get {
+                return ResourceManager.GetString("Discord_Encountered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ratio.
+        /// </summary>
+        internal static string Discord_EncounteredRatio {
+            get {
+                return ResourceManager.GetString("Discord_EncounteredRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game.
+        /// </summary>
+        internal static string Discord_Game {
+            get {
+                return ResourceManager.GetString("Discord_Game", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        internal static string Discord_Gender {
+            get {
+                return ResourceManager.GetString("Discord_Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item.
         /// </summary>
         internal static string Discord_Item {
@@ -300,6 +336,15 @@ namespace Pokebot {
         internal static string Discord_Shiny {
             get {
                 return ResourceManager.GetString("Discord_Shiny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shiny Encountered.
+        /// </summary>
+        internal static string Discord_ShinyEncountered {
+            get {
+                return ResourceManager.GetString("Discord_ShinyEncountered", resourceCulture);
             }
         }
         

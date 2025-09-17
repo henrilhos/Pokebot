@@ -171,6 +171,18 @@
   <data name="Discord_ContentWithUser" xml:space="preserve">
     <value>Hey {0} ! {1}</value>
   </data>
+  <data name="Discord_Encountered" xml:space="preserve">
+    <value>Encountered</value>
+  </data>
+  <data name="Discord_EncounteredRatio" xml:space="preserve">
+    <value>Ratio</value>
+  </data>
+  <data name="Discord_Game" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="Discord_Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
   <data name="Discord_Item" xml:space="preserve">
     <value>Item</value>
   </data>
@@ -200,6 +212,9 @@
   </data>
   <data name="Discord_Shiny" xml:space="preserve">
     <value>Shiny</value>
+  </data>
+  <data name="Discord_ShinyEncountered" xml:space="preserve">
+    <value>Shiny Encountered</value>
   </data>
   <data name="Discord_ShinyNo" xml:space="preserve">
     <value>No :x:</value>
