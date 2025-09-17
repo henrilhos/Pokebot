@@ -1,0 +1,142 @@
+{
+  "Name": "Sapphire",
+  "Code": 1,
+  "Hashs": [
+    {
+      "Hash": "5a087835009d552d4c5c1f96be3be3206e378153", //Deutch
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "7e6e034f9cdca6d2c4a270fdb50a94def5883d17", //Deutch (rev 1)
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "3ccbbd45f8553c36463f13b938e833f652b793e4", //USA (Europe)
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokesapphire",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "4722efb8cd45772ca32555b98fd3b9719f8e60a9", //USA (Europe) (rev 1)
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokesapphire_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "89b45fb172e6b55d51fc0e61989775187f6fe63c", //USA (Europe) (rev 2)
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokesapphire_rev2",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "c269b5692b2d0e5800ba1ddf117fda95ac648634", //French
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire",
+        "Patches": [
+          "patchsapphire_fr"
+        ]
+      }
+    },
+    {
+      "Hash": "860e93f5ea44f4278132f6c1ee5650d07b852fd8", //French (rev 1)
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "f729dd571fb2c09e72c5c1d68fe0a21e72713d34", //Italian
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "73edf67b9b82ff12795622dca412733755d2c0fe", //Italian (rev 1)
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "3233342c2f3087e6ffe6c1791cd5867db07df842", //Japanese
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "01f509671445965236ac4c6b5a354fe2f1e69f13", //Japanese (rev 1)
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "3a6489189e581c4b29914071b79207883b8c16d8", //Spanish
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "0fe9ad1e602e2fafa090aee25e43d6980625173c", //Spanish (rev 1)
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokesapphire_rev1",
+        "Patches": []
+      }
+    }
+  ],
+  "Generation": 3,
+  "Starters": [
+    {
+      "PositionIndex": 0,
+      "PokemonId": 277
+    },
+    {
+      "PositionIndex": 1,
+      "PokemonId": 280
+    },
+    {
+      "PositionIndex": 2,
+      "PokemonId": 283
+    }
+  ],
+  "PokeFinderTypes": [
+    {
+      "Name": "None",
+      "FrameAdvance": 0
+    }
+  ],
+  "BotsConfig": {
+    "Starter": {
+      "Position": {
+        "X": 14,
+        "Y": 22
+      },
+      "Facing": 34
+    }
+  }
+}

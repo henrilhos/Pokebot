@@ -1,0 +1,7 @@
+SystemID GB
+00D0EF	b	u	0	System Bus	wEnemyMonSpecies
+00D0F0	b	u	0	System Bus	wEnemyMonItem
+00D0F1	b	u	0	System Bus	wEnemyMonMoves 1
+00D0F2	b	u	0	System Bus	wEnemyMonMoves 2
+00D0F3	b	u	0	System Bus	wEnemyMonMoves 3
+

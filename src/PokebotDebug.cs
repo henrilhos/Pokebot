@@ -1,22 +1,18 @@
 ﻿using BizHawk.Client.Common;
-using BizHawk.Common.IOExtensions;
 using Pokebot.Factories.Versions;
 using Pokebot.Models;
 using Pokebot.Models.Player;
+using Pokebot.Symbols;
 using Pokebot.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BizHawk.Client.EmuHawk.BatchRunner;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Pokebot
 {
@@ -26,6 +22,8 @@ namespace Pokebot
         public GameVersion? GameVersion { get; private set; }
         public string BizhawkPath { get; }
 
+        private List<Symbol> _correctedSymbols = new List<Symbol>();
+
         public PokebotDebug(ApiContainer APIContainer)
         {
             InitializeComponent();
@@ -33,7 +31,7 @@ namespace Pokebot
             BizhawkPath = @"C:\Users\manga\source\repos\Pokebot\BizHawk";
 
             var saveStates = GetSaveStates();
-            if (saveStates.Count() > 0 )
+            if (saveStates.Count() > 0)
             {
                 _statesComboBox.Items.AddRange(saveStates);
                 _statesComboBox.DisplayMember = nameof(SaveStateFile.Filename);
@@ -60,7 +58,8 @@ namespace Pokebot
                         APIContainer.EmuClient.LoadState(@saveStateFile.FullPath.Replace(".State", ""));
                     }
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 SetStatus(ex.Message);
             }
@@ -71,7 +70,8 @@ namespace Pokebot
             if (status == null)
             {
                 _status.Hide();
-            } else
+            }
+            else
             {
                 _status.Show();
                 _status.Text = status;
@@ -97,7 +97,7 @@ namespace Pokebot
 
                 var tasks = GameVersion.Memory.GetTasks();
                 StringBuilder sb = new StringBuilder();
-                foreach(var task in tasks)
+                foreach (var task in tasks)
                 {
                     var bytesArray = string.Join("-", task.Data);
                     var bytesTxt = Encoding.UTF8.GetString(task.Data).Replace("\0", "");
@@ -153,7 +153,8 @@ namespace Pokebot
                         if (value != lvi.SubItems[2].Text)
                         {
                             lvi.BackColor = Color.Yellow;
-                        } else
+                        }
+                        else
                         {
                             lvi.BackColor = Color.White;
                         }
@@ -187,7 +188,8 @@ namespace Pokebot
                         return lvi;
                     }).ToArray());
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error: " + ex.Message);
             }
@@ -380,6 +382,45 @@ namespace Pokebot
             catch { }
 
             return list;
+        }
+
+        private record SymbolFinderOptions(string SymbolName, int MaxTry, int Size, int Offset, byte[] Expected);
+
+        private void searchPlayer()
+        {
+            var mainFileData = ResourceSymbols.ResourceManager.GetObject(GameVersion.HashData.Symbols.Main) as byte[];
+            var defaultSymbols = SymbolUtil.Load(mainFileData).ToList();
+
+            var avatarSymbol = defaultSymbols.First(x => x.Name == "gPlayerAvatar");
+            var objectSymbol = defaultSymbols.First(x => x.Name == "gObjectEvents");
+
+            var bytesAvatar = SymbolUtil.Read(APIContainer, avatarSymbol).ToArray();
+            var bytesObjects = SymbolUtil.Read(APIContainer, objectSymbol).ToArray();
+
+            var currentX = bytesObjects.Skip(0x10).Take(2).ToUInt16();
+            var currentY = bytesObjects.Skip(0x12).Take(2).ToUInt16();
+        }
+
+        private void _copyAddresses_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            var mainFileData = ResourceSymbols.ResourceManager.GetObject(GameVersion.HashData.Symbols.Main) as byte[];
+            var defaultSymbols = SymbolUtil.Load(mainFileData).ToList();
+
+            foreach (Symbol symbol in _correctedSymbols)
+            {
+                sb.AppendLine($"{symbol.Address.ToString("X8")} {symbol.Letter} {symbol.Size.ToString("X8")} {symbol.Name}");
+            }
+
+            Clipboard.SetText(sb.ToString());
+        }
+
+        private void _checkOpponentBtn_Click(object sender, EventArgs e)
+        {
+            if (GameVersion != null)
+            {
+                var pokemon = GameVersion.Memory.GetOpponent();
+            }
         }
 
         private void SearchTasks()

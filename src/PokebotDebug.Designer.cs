@@ -30,6 +30,7 @@
         {
             this._tabControl = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this._checkOpponentBtn = new System.Windows.Forms.Button();
             this._status = new System.Windows.Forms.Label();
             this._statesComboBox = new System.Windows.Forms.ComboBox();
             this._quickStartButton = new System.Windows.Forms.Button();
@@ -80,30 +81,45 @@
             this._tabControl.Controls.Add(this._tabTasks);
             this._tabControl.Controls.Add(this._tabFinder);
             this._tabControl.Location = new System.Drawing.Point(0, 0);
+            this._tabControl.Margin = new System.Windows.Forms.Padding(2);
             this._tabControl.Name = "_tabControl";
             this._tabControl.SelectedIndex = 0;
-            this._tabControl.Size = new System.Drawing.Size(798, 446);
+            this._tabControl.Size = new System.Drawing.Size(598, 362);
             this._tabControl.TabIndex = 0;
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this._checkOpponentBtn);
             this.tabPage3.Controls.Add(this._status);
             this.tabPage3.Controls.Add(this._statesComboBox);
             this.tabPage3.Controls.Add(this._quickStartButton);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(790, 417);
+            this.tabPage3.Size = new System.Drawing.Size(590, 336);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Tools";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // _checkOpponentBtn
+            // 
+            this._checkOpponentBtn.Location = new System.Drawing.Point(225, 269);
+            this._checkOpponentBtn.Margin = new System.Windows.Forms.Padding(2);
+            this._checkOpponentBtn.Name = "_checkOpponentBtn";
+            this._checkOpponentBtn.Size = new System.Drawing.Size(140, 19);
+            this._checkOpponentBtn.TabIndex = 3;
+            this._checkOpponentBtn.Text = "Trigger Opponent";
+            this._checkOpponentBtn.UseVisualStyleBackColor = true;
+            this._checkOpponentBtn.Click += new System.EventHandler(this._checkOpponentBtn_Click);
+            // 
             // _status
             // 
             this._status.ForeColor = System.Drawing.Color.Red;
-            this._status.Location = new System.Drawing.Point(8, 124);
-            this._status.MaximumSize = new System.Drawing.Size(780, 0);
+            this._status.Location = new System.Drawing.Point(6, 101);
+            this._status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this._status.MaximumSize = new System.Drawing.Size(585, 0);
             this._status.Name = "_status";
-            this._status.Size = new System.Drawing.Size(780, 0);
+            this._status.Size = new System.Drawing.Size(585, 0);
             this._status.TabIndex = 2;
             this._status.Text = "debug";
             this._status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -111,16 +127,18 @@
             // _statesComboBox
             // 
             this._statesComboBox.FormattingEnabled = true;
-            this._statesComboBox.Location = new System.Drawing.Point(300, 165);
+            this._statesComboBox.Location = new System.Drawing.Point(225, 134);
+            this._statesComboBox.Margin = new System.Windows.Forms.Padding(2);
             this._statesComboBox.Name = "_statesComboBox";
-            this._statesComboBox.Size = new System.Drawing.Size(186, 24);
+            this._statesComboBox.Size = new System.Drawing.Size(140, 21);
             this._statesComboBox.TabIndex = 1;
             // 
             // _quickStartButton
             // 
-            this._quickStartButton.Location = new System.Drawing.Point(300, 195);
+            this._quickStartButton.Location = new System.Drawing.Point(225, 158);
+            this._quickStartButton.Margin = new System.Windows.Forms.Padding(2);
             this._quickStartButton.Name = "_quickStartButton";
-            this._quickStartButton.Size = new System.Drawing.Size(186, 23);
+            this._quickStartButton.Size = new System.Drawing.Size(140, 19);
             this._quickStartButton.TabIndex = 0;
             this._quickStartButton.Text = "Quick Start";
             this._quickStartButton.UseVisualStyleBackColor = true;
@@ -131,9 +149,10 @@
             this._playerTab.Controls.Add(this._playerFacing);
             this._playerTab.Controls.Add(this._playerY);
             this._playerTab.Controls.Add(this._playerX);
-            this._playerTab.Location = new System.Drawing.Point(4, 25);
+            this._playerTab.Location = new System.Drawing.Point(4, 22);
+            this._playerTab.Margin = new System.Windows.Forms.Padding(2);
             this._playerTab.Name = "_playerTab";
-            this._playerTab.Size = new System.Drawing.Size(790, 417);
+            this._playerTab.Size = new System.Drawing.Size(590, 336);
             this._playerTab.TabIndex = 2;
             this._playerTab.Text = "Player";
             this._playerTab.UseVisualStyleBackColor = true;
@@ -141,27 +160,30 @@
             // _playerFacing
             // 
             this._playerFacing.AutoSize = true;
-            this._playerFacing.Location = new System.Drawing.Point(8, 44);
+            this._playerFacing.Location = new System.Drawing.Point(6, 36);
+            this._playerFacing.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._playerFacing.Name = "_playerFacing";
-            this._playerFacing.Size = new System.Drawing.Size(44, 16);
+            this._playerFacing.Size = new System.Drawing.Size(35, 13);
             this._playerFacing.TabIndex = 2;
             this._playerFacing.Text = "label3";
             // 
             // _playerY
             // 
             this._playerY.AutoSize = true;
-            this._playerY.Location = new System.Drawing.Point(8, 28);
+            this._playerY.Location = new System.Drawing.Point(6, 23);
+            this._playerY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._playerY.Name = "_playerY";
-            this._playerY.Size = new System.Drawing.Size(44, 16);
+            this._playerY.Size = new System.Drawing.Size(35, 13);
             this._playerY.TabIndex = 1;
             this._playerY.Text = "label2";
             // 
             // _playerX
             // 
             this._playerX.AutoSize = true;
-            this._playerX.Location = new System.Drawing.Point(8, 12);
+            this._playerX.Location = new System.Drawing.Point(6, 10);
+            this._playerX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._playerX.Name = "_playerX";
-            this._playerX.Size = new System.Drawing.Size(44, 16);
+            this._playerX.Size = new System.Drawing.Size(35, 13);
             this._playerX.TabIndex = 0;
             this._playerX.Text = "label1";
             // 
@@ -169,27 +191,30 @@
             // 
             this._tabTasks.Controls.Add(this._tasksLabel);
             this._tabTasks.Controls.Add(this._stateLabel);
-            this._tabTasks.Location = new System.Drawing.Point(4, 25);
+            this._tabTasks.Location = new System.Drawing.Point(4, 22);
+            this._tabTasks.Margin = new System.Windows.Forms.Padding(2);
             this._tabTasks.Name = "_tabTasks";
-            this._tabTasks.Size = new System.Drawing.Size(790, 417);
+            this._tabTasks.Size = new System.Drawing.Size(590, 336);
             this._tabTasks.TabIndex = 3;
             this._tabTasks.Text = "Tasks";
             this._tabTasks.UseVisualStyleBackColor = true;
             // 
             // _tasksLabel
             // 
-            this._tasksLabel.Location = new System.Drawing.Point(8, 24);
+            this._tasksLabel.Location = new System.Drawing.Point(6, 20);
+            this._tasksLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._tasksLabel.Name = "_tasksLabel";
-            this._tasksLabel.Size = new System.Drawing.Size(776, 400);
+            this._tasksLabel.Size = new System.Drawing.Size(582, 325);
             this._tasksLabel.TabIndex = 1;
             this._tasksLabel.Text = "label1";
             // 
             // _stateLabel
             // 
             this._stateLabel.AutoSize = true;
-            this._stateLabel.Location = new System.Drawing.Point(8, 8);
+            this._stateLabel.Location = new System.Drawing.Point(6, 6);
+            this._stateLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._stateLabel.Name = "_stateLabel";
-            this._stateLabel.Size = new System.Drawing.Size(44, 16);
+            this._stateLabel.Size = new System.Drawing.Size(35, 13);
             this._stateLabel.TabIndex = 0;
             this._stateLabel.Text = "label1";
             // 
@@ -211,18 +236,20 @@
             this._tabFinder.Controls.Add(this._finderValueTextBox);
             this._tabFinder.Controls.Add(this._finderIterationUpDown);
             this._tabFinder.Controls.Add(this._runFinderButton);
-            this._tabFinder.Location = new System.Drawing.Point(4, 25);
+            this._tabFinder.Location = new System.Drawing.Point(4, 22);
+            this._tabFinder.Margin = new System.Windows.Forms.Padding(2);
             this._tabFinder.Name = "_tabFinder";
-            this._tabFinder.Size = new System.Drawing.Size(790, 417);
+            this._tabFinder.Size = new System.Drawing.Size(590, 336);
             this._tabFinder.TabIndex = 4;
             this._tabFinder.Text = "Finder";
             this._tabFinder.UseVisualStyleBackColor = true;
             // 
             // _finderInspectReverse
             // 
-            this._finderInspectReverse.Location = new System.Drawing.Point(569, 10);
+            this._finderInspectReverse.Location = new System.Drawing.Point(427, 8);
+            this._finderInspectReverse.Margin = new System.Windows.Forms.Padding(2);
             this._finderInspectReverse.Name = "_finderInspectReverse";
-            this._finderInspectReverse.Size = new System.Drawing.Size(211, 23);
+            this._finderInspectReverse.Size = new System.Drawing.Size(158, 19);
             this._finderInspectReverse.TabIndex = 16;
             this._finderInspectReverse.Text = "inspect reverse addr";
             this._finderInspectReverse.UseVisualStyleBackColor = true;
@@ -231,24 +258,27 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(620, 98);
+            this.label5.Location = new System.Drawing.Point(465, 80);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 16);
+            this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 15;
             this.label5.Text = "Offset";
             // 
             // _finderOffsetUpDown
             // 
-            this._finderOffsetUpDown.Location = new System.Drawing.Point(435, 96);
+            this._finderOffsetUpDown.Location = new System.Drawing.Point(326, 78);
+            this._finderOffsetUpDown.Margin = new System.Windows.Forms.Padding(2);
             this._finderOffsetUpDown.Name = "_finderOffsetUpDown";
-            this._finderOffsetUpDown.Size = new System.Drawing.Size(179, 22);
+            this._finderOffsetUpDown.Size = new System.Drawing.Size(134, 20);
             this._finderOffsetUpDown.TabIndex = 14;
             // 
             // _filterAdd
             // 
-            this._filterAdd.Location = new System.Drawing.Point(435, 124);
+            this._filterAdd.Location = new System.Drawing.Point(326, 101);
+            this._filterAdd.Margin = new System.Windows.Forms.Padding(2);
             this._filterAdd.Name = "_filterAdd";
-            this._filterAdd.Size = new System.Drawing.Size(179, 23);
+            this._filterAdd.Size = new System.Drawing.Size(134, 19);
             this._filterAdd.TabIndex = 13;
             this._filterAdd.Text = "add symbol";
             this._filterAdd.UseVisualStyleBackColor = true;
@@ -257,36 +287,40 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(289, 98);
+            this.label4.Location = new System.Drawing.Point(217, 80);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 16);
+            this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 12;
             this.label4.Text = "Size";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(289, 71);
+            this.label3.Location = new System.Drawing.Point(217, 58);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 16);
+            this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "Expected";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(289, 42);
+            this.label2.Location = new System.Drawing.Point(217, 34);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 16);
+            this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "Number of try";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(289, 14);
+            this.label1.Location = new System.Drawing.Point(217, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 16);
+            this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Symbol";
             // 
@@ -295,9 +329,10 @@
             this._finderSymbolsCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this._finderSymbolsCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this._finderSymbolsCB.FormattingEnabled = true;
-            this._finderSymbolsCB.Location = new System.Drawing.Point(8, 10);
+            this._finderSymbolsCB.Location = new System.Drawing.Point(6, 8);
+            this._finderSymbolsCB.Margin = new System.Windows.Forms.Padding(2);
             this._finderSymbolsCB.Name = "_finderSymbolsCB";
-            this._finderSymbolsCB.Size = new System.Drawing.Size(275, 24);
+            this._finderSymbolsCB.Size = new System.Drawing.Size(207, 21);
             this._finderSymbolsCB.TabIndex = 8;
             this._finderSymbolsCB.Click += new System.EventHandler(this._finderSymbolsCB_Click);
             // 
@@ -312,9 +347,10 @@
             this.columnHeader6});
             this._finderList.GridLines = true;
             this._finderList.HideSelection = false;
-            this._finderList.Location = new System.Drawing.Point(8, 153);
+            this._finderList.Location = new System.Drawing.Point(6, 124);
+            this._finderList.Margin = new System.Windows.Forms.Padding(2);
             this._finderList.Name = "_finderList";
-            this._finderList.Size = new System.Drawing.Size(776, 260);
+            this._finderList.Size = new System.Drawing.Size(583, 212);
             this._finderList.TabIndex = 7;
             this._finderList.UseCompatibleStateImageBehavior = false;
             this._finderList.View = System.Windows.Forms.View.Details;
@@ -350,9 +386,10 @@
             // 
             // _finderClear
             // 
-            this._finderClear.Location = new System.Drawing.Point(620, 124);
+            this._finderClear.Location = new System.Drawing.Point(465, 101);
+            this._finderClear.Margin = new System.Windows.Forms.Padding(2);
             this._finderClear.Name = "_finderClear";
-            this._finderClear.Size = new System.Drawing.Size(160, 23);
+            this._finderClear.Size = new System.Drawing.Size(120, 19);
             this._finderClear.TabIndex = 6;
             this._finderClear.Text = "clear";
             this._finderClear.UseVisualStyleBackColor = true;
@@ -360,9 +397,10 @@
             // 
             // _finderListenButton
             // 
-            this._finderListenButton.Location = new System.Drawing.Point(221, 124);
+            this._finderListenButton.Location = new System.Drawing.Point(166, 101);
+            this._finderListenButton.Margin = new System.Windows.Forms.Padding(2);
             this._finderListenButton.Name = "_finderListenButton";
-            this._finderListenButton.Size = new System.Drawing.Size(208, 23);
+            this._finderListenButton.Size = new System.Drawing.Size(156, 19);
             this._finderListenButton.TabIndex = 5;
             this._finderListenButton.Text = "run (3s delay)";
             this._finderListenButton.UseVisualStyleBackColor = true;
@@ -370,9 +408,10 @@
             // 
             // _finderSize
             // 
-            this._finderSize.Location = new System.Drawing.Point(8, 96);
+            this._finderSize.Location = new System.Drawing.Point(6, 78);
+            this._finderSize.Margin = new System.Windows.Forms.Padding(2);
             this._finderSize.Name = "_finderSize";
-            this._finderSize.Size = new System.Drawing.Size(275, 22);
+            this._finderSize.Size = new System.Drawing.Size(206, 20);
             this._finderSize.TabIndex = 4;
             this._finderSize.Value = new decimal(new int[] {
             4,
@@ -382,21 +421,23 @@
             // 
             // _finderValueTextBox
             // 
-            this._finderValueTextBox.Location = new System.Drawing.Point(8, 68);
+            this._finderValueTextBox.Location = new System.Drawing.Point(6, 55);
+            this._finderValueTextBox.Margin = new System.Windows.Forms.Padding(2);
             this._finderValueTextBox.Name = "_finderValueTextBox";
-            this._finderValueTextBox.Size = new System.Drawing.Size(275, 22);
+            this._finderValueTextBox.Size = new System.Drawing.Size(207, 20);
             this._finderValueTextBox.TabIndex = 3;
             // 
             // _finderIterationUpDown
             // 
-            this._finderIterationUpDown.Location = new System.Drawing.Point(8, 40);
+            this._finderIterationUpDown.Location = new System.Drawing.Point(6, 32);
+            this._finderIterationUpDown.Margin = new System.Windows.Forms.Padding(2);
             this._finderIterationUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
             this._finderIterationUpDown.Name = "_finderIterationUpDown";
-            this._finderIterationUpDown.Size = new System.Drawing.Size(275, 22);
+            this._finderIterationUpDown.Size = new System.Drawing.Size(206, 20);
             this._finderIterationUpDown.TabIndex = 1;
             this._finderIterationUpDown.Value = new decimal(new int[] {
             100,
@@ -406,9 +447,10 @@
             // 
             // _runFinderButton
             // 
-            this._runFinderButton.Location = new System.Drawing.Point(8, 124);
+            this._runFinderButton.Location = new System.Drawing.Point(6, 101);
+            this._runFinderButton.Margin = new System.Windows.Forms.Padding(2);
             this._runFinderButton.Name = "_runFinderButton";
-            this._runFinderButton.Size = new System.Drawing.Size(207, 23);
+            this._runFinderButton.Size = new System.Drawing.Size(155, 19);
             this._runFinderButton.TabIndex = 0;
             this._runFinderButton.Text = "run";
             this._runFinderButton.UseVisualStyleBackColor = true;
@@ -416,10 +458,11 @@
             // 
             // PokebotDebug
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this._tabControl);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PokebotDebug";
             this.Text = "PokebotDebug";
             this._tabControl.ResumeLayout(false);
@@ -474,5 +517,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button _finderInspectReverse;
+        private System.Windows.Forms.Button _checkOpponentBtn;
     }
 }

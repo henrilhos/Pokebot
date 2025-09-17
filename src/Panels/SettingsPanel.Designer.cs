@@ -39,15 +39,17 @@
             this._delayTooltip = new System.Windows.Forms.ToolTip(this.components);
             this._discordUserIDLabel = new System.Windows.Forms.Label();
             this._discordUserID = new System.Windows.Forms.TextBox();
+            this._shinyHackTooltip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this._delayUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // _delayLabel
             // 
             this._delayLabel.AutoSize = true;
-            this._delayLabel.Location = new System.Drawing.Point(128, 138);
+            this._delayLabel.Location = new System.Drawing.Point(96, 112);
+            this._delayLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._delayLabel.Name = "_delayLabel";
-            this._delayLabel.Size = new System.Drawing.Size(219, 16);
+            this._delayLabel.Size = new System.Drawing.Size(177, 13);
             this._delayLabel.TabIndex = 20;
             this._delayLabel.Text = "Seconds of delay between bot input";
             // 
@@ -59,40 +61,44 @@
             0,
             0,
             65536});
-            this._delayUpDown.Location = new System.Drawing.Point(2, 136);
+            this._delayUpDown.Location = new System.Drawing.Point(2, 110);
+            this._delayUpDown.Margin = new System.Windows.Forms.Padding(2);
             this._delayUpDown.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this._delayUpDown.Name = "_delayUpDown";
-            this._delayUpDown.Size = new System.Drawing.Size(120, 22);
+            this._delayUpDown.Size = new System.Drawing.Size(90, 20);
             this._delayUpDown.TabIndex = 19;
             this._delayUpDown.ValueChanged += new System.EventHandler(this._delayUpDown_ValueChanged);
             // 
             // _discordWebhookLabel
             // 
             this._discordWebhookLabel.AutoSize = true;
-            this._discordWebhookLabel.Location = new System.Drawing.Point(250, 84);
+            this._discordWebhookLabel.Location = new System.Drawing.Point(188, 68);
+            this._discordWebhookLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._discordWebhookLabel.Name = "_discordWebhookLabel";
-            this._discordWebhookLabel.Size = new System.Drawing.Size(116, 16);
+            this._discordWebhookLabel.Size = new System.Drawing.Size(93, 13);
             this._discordWebhookLabel.TabIndex = 18;
             this._discordWebhookLabel.Text = "Discord Webhook";
             // 
             // _discordWebhookText
             // 
-            this._discordWebhookText.Location = new System.Drawing.Point(3, 81);
+            this._discordWebhookText.Location = new System.Drawing.Point(2, 66);
+            this._discordWebhookText.Margin = new System.Windows.Forms.Padding(2);
             this._discordWebhookText.Name = "_discordWebhookText";
-            this._discordWebhookText.Size = new System.Drawing.Size(241, 22);
+            this._discordWebhookText.Size = new System.Drawing.Size(182, 20);
             this._discordWebhookText.TabIndex = 17;
             this._discordWebhookText.TextChanged += new System.EventHandler(this._discordWebhookText_TextChanged);
             // 
             // _pauseCheckbox
             // 
             this._pauseCheckbox.AutoSize = true;
-            this._pauseCheckbox.Location = new System.Drawing.Point(3, 55);
+            this._pauseCheckbox.Location = new System.Drawing.Point(2, 45);
+            this._pauseCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this._pauseCheckbox.Name = "_pauseCheckbox";
-            this._pauseCheckbox.Size = new System.Drawing.Size(68, 20);
+            this._pauseCheckbox.Size = new System.Drawing.Size(56, 17);
             this._pauseCheckbox.TabIndex = 14;
             this._pauseCheckbox.Text = "Pause";
             this._pauseCheckbox.UseVisualStyleBackColor = true;
@@ -101,9 +107,10 @@
             // _soundCheckbox
             // 
             this._soundCheckbox.AutoSize = true;
-            this._soundCheckbox.Location = new System.Drawing.Point(3, 29);
+            this._soundCheckbox.Location = new System.Drawing.Point(2, 24);
+            this._soundCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this._soundCheckbox.Name = "_soundCheckbox";
-            this._soundCheckbox.Size = new System.Drawing.Size(68, 20);
+            this._soundCheckbox.Size = new System.Drawing.Size(57, 17);
             this._soundCheckbox.TabIndex = 13;
             this._soundCheckbox.Text = "Sound";
             this._soundCheckbox.UseVisualStyleBackColor = true;
@@ -112,9 +119,10 @@
             // _accelerateCheckbox
             // 
             this._accelerateCheckbox.AutoSize = true;
-            this._accelerateCheckbox.Location = new System.Drawing.Point(3, 3);
+            this._accelerateCheckbox.Location = new System.Drawing.Point(2, 2);
+            this._accelerateCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this._accelerateCheckbox.Name = "_accelerateCheckbox";
-            this._accelerateCheckbox.Size = new System.Drawing.Size(70, 20);
+            this._accelerateCheckbox.Size = new System.Drawing.Size(57, 17);
             this._accelerateCheckbox.TabIndex = 12;
             this._accelerateCheckbox.Text = "Speed";
             this._accelerateCheckbox.UseVisualStyleBackColor = true;
@@ -123,23 +131,25 @@
             // _discordUserIDLabel
             // 
             this._discordUserIDLabel.AutoSize = true;
-            this._discordUserIDLabel.Location = new System.Drawing.Point(250, 111);
+            this._discordUserIDLabel.Location = new System.Drawing.Point(188, 90);
+            this._discordUserIDLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._discordUserIDLabel.Name = "_discordUserIDLabel";
-            this._discordUserIDLabel.Size = new System.Drawing.Size(173, 16);
+            this._discordUserIDLabel.Size = new System.Drawing.Size(140, 13);
             this._discordUserIDLabel.TabIndex = 22;
             this._discordUserIDLabel.Text = "Discord User ID (facultative)";
             // 
             // _discordUserID
             // 
-            this._discordUserID.Location = new System.Drawing.Point(3, 108);
+            this._discordUserID.Location = new System.Drawing.Point(2, 88);
+            this._discordUserID.Margin = new System.Windows.Forms.Padding(2);
             this._discordUserID.Name = "_discordUserID";
-            this._discordUserID.Size = new System.Drawing.Size(241, 22);
+            this._discordUserID.Size = new System.Drawing.Size(182, 20);
             this._discordUserID.TabIndex = 21;
             this._discordUserID.TextChanged += new System.EventHandler(this._discordUserID_TextChanged);
             // 
             // SettingsPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._discordUserIDLabel);
             this.Controls.Add(this._discordUserID);
@@ -150,8 +160,9 @@
             this.Controls.Add(this._pauseCheckbox);
             this.Controls.Add(this._soundCheckbox);
             this.Controls.Add(this._accelerateCheckbox);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SettingsPanel";
-            this.Size = new System.Drawing.Size(768, 341);
+            this.Size = new System.Drawing.Size(576, 277);
             ((System.ComponentModel.ISupportInitialize)(this._delayUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -170,5 +181,6 @@
         private System.Windows.Forms.ToolTip _delayTooltip;
         private System.Windows.Forms.Label _discordUserIDLabel;
         private System.Windows.Forms.TextBox _discordUserID;
+        private System.Windows.Forms.ToolTip _shinyHackTooltip;
     }
 }

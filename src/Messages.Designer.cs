@@ -214,6 +214,42 @@ namespace Pokebot {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encountered.
+        /// </summary>
+        internal static string Discord_Encountered {
+            get {
+                return ResourceManager.GetString("Discord_Encountered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ratio.
+        /// </summary>
+        internal static string Discord_EncounteredRatio {
+            get {
+                return ResourceManager.GetString("Discord_EncounteredRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game.
+        /// </summary>
+        internal static string Discord_Game {
+            get {
+                return ResourceManager.GetString("Discord_Game", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        internal static string Discord_Gender {
+            get {
+                return ResourceManager.GetString("Discord_Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item.
         /// </summary>
         internal static string Discord_Item {
@@ -300,6 +336,15 @@ namespace Pokebot {
         internal static string Discord_Shiny {
             get {
                 return ResourceManager.GetString("Discord_Shiny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shiny Encountered.
+        /// </summary>
+        internal static string Discord_ShinyEncountered {
+            get {
+                return ResourceManager.GetString("Discord_ShinyEncountered", resourceCulture);
             }
         }
         
@@ -583,6 +628,15 @@ namespace Pokebot {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tested: {0}.
+        /// </summary>
+        internal static string Status_Tested {
+            get {
+                return ResourceManager.GetString("Status_Tested", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No symbols found for this game..
         /// </summary>
         internal static string Symbols_Empty {
@@ -651,6 +705,15 @@ namespace Pokebot {
         internal static string Tooltip_Delay {
             get {
                 return ResourceManager.GetString("Tooltip_Delay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generation 1 and 2 support this option.\nWhile this is enable and you search for shiny, all pokemon \nwill be shiny automatically and legit\n\n(This is because old generation calculate shiny based on IV and not TID/SID).
+        /// </summary>
+        internal static string Tooltip_ShinyHack {
+            get {
+                return ResourceManager.GetString("Tooltip_ShinyHack", resourceCulture);
             }
         }
         

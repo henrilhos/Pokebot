@@ -1,0 +1,5 @@
+SystemID GB
+00DCDF	b	u	0	System Bus	specie
+00DCF4	b	b	0	System Bus	atk def iv
+00DCF5	b	b	0	System Bus	spd iv
+

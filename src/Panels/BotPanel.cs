@@ -1,19 +1,10 @@
-﻿using BizHawk.Client.Common;
-using Pokebot.Factories.Versions;
-using Pokebot.Factories;
+﻿using Pokebot.Factories.Bots;
 using Pokebot.Models.Config;
 using Pokebot.Utils;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Pokebot.Factories.Bots;
-using Pokebot.Models.Pokemons;
 
 namespace Pokebot.Panels
 {
@@ -69,7 +60,7 @@ namespace Pokebot.Panels
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex);
                 StopBot();
                 SetBotStatus(ex.Message, Color.Red);
             }
@@ -86,7 +77,7 @@ namespace Pokebot.Panels
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex);
                 SetBotStatus(ex.Message, Color.Red);
             }
         }

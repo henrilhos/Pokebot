@@ -365,5 +365,6 @@ FodyWeavers.xsd
 
 # BizHawk
 BizHawk/GBA/
+BizHawk/Gameboy/
 BizHawk/Roms/
 /BizHawk/config.ini

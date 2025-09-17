@@ -1,0 +1,102 @@
+{
+  "Name": "Fire Red",
+  "Code": 4,
+  "Hashs": [
+    {
+      "Hash": "18a3758ceeef2c77b315144be2c3910d6f1f69fe", //Deutch
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokefirered",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc", //USA (Europe)
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokefirered",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "dd5945db9b930750cb39d00c84da8571feebf417", //USA (Europe) (rev 1)
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokefirered_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "fc663907256f06a3a09e2d6b967bc9af4919f111", //French
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokefirered",
+        "Patches": [
+          "patchfirered_fr"
+        ]
+      }
+    },
+    {
+      "Hash": "66a9d415205321376b4318534c0dce5f69d28362", //Italian
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokefirered",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "04139887b6cd8f53269aca098295b006ddba6cfe", //Japanese
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokefirered",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "7c7107b87c3ccf6e3dbceb9cf80ceeffb25a1857", //Japanese (rev 1)
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokefirered_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "ab8f6bfe0ccdaf41188cd015c8c74c314d02296a", //Spanish
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokefirered",
+        "Patches": []
+      }
+    }
+  ],
+  "Generation": 3,
+  "Starters": [
+    {
+      "PositionIndex": 0,
+      "PokemonId": 1
+    },
+    {
+      "PositionIndex": 1,
+      "PokemonId": 7
+    },
+    {
+      "PositionIndex": 2,
+      "PokemonId": 4
+    }
+  ],
+  "PokeFinderTypes": [
+    {
+      "Name": "None",
+      "FrameAdvance": 0
+    }
+  ],
+  "BotsConfig": {
+    "Starter": {
+      "Position": {
+        "X": 16,
+        "Y": 12
+      },
+      "Facing": 34
+    }
+  }
+}

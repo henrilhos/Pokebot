@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._shinyCheckbox = new System.Windows.Forms.CheckBox();
             this._ivHpBox = new System.Windows.Forms.NumericUpDown();
             this._statsGroup = new System.Windows.Forms.GroupBox();
@@ -48,6 +49,9 @@
             this._typesComboBox = new System.Windows.Forms.ComboBox();
             this._exactIVCheckbox = new System.Windows.Forms.CheckBox();
             this._genderComboBox = new System.Windows.Forms.ComboBox();
+            this._shinyHackIcon = new System.Windows.Forms.PictureBox();
+            this._useShinyHack = new System.Windows.Forms.CheckBox();
+            this._shinyHackTooltip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this._ivHpBox)).BeginInit();
             this._statsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._ivSpDefenseBox)).BeginInit();
@@ -55,13 +59,14 @@
             ((System.ComponentModel.ISupportInitialize)(this._ivSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ivDefenseBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ivAttackBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._shinyHackIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // _shinyCheckbox
             // 
             this._shinyCheckbox.AutoSize = true;
             this._shinyCheckbox.Location = new System.Drawing.Point(0, 2);
-            this._shinyCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._shinyCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this._shinyCheckbox.Name = "_shinyCheckbox";
             this._shinyCheckbox.Size = new System.Drawing.Size(52, 17);
             this._shinyCheckbox.TabIndex = 0;
@@ -72,7 +77,7 @@
             // _ivHpBox
             // 
             this._ivHpBox.Location = new System.Drawing.Point(45, 17);
-            this._ivHpBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._ivHpBox.Margin = new System.Windows.Forms.Padding(2);
             this._ivHpBox.Maximum = new decimal(new int[] {
             31,
             0,
@@ -98,9 +103,9 @@
             this._statsGroup.Controls.Add(this.label1);
             this._statsGroup.Controls.Add(this._ivHpBox);
             this._statsGroup.Location = new System.Drawing.Point(140, 24);
-            this._statsGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._statsGroup.Margin = new System.Windows.Forms.Padding(2);
             this._statsGroup.Name = "_statsGroup";
-            this._statsGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._statsGroup.Padding = new System.Windows.Forms.Padding(2);
             this._statsGroup.Size = new System.Drawing.Size(363, 84);
             this._statsGroup.TabIndex = 2;
             this._statsGroup.TabStop = false;
@@ -119,7 +124,7 @@
             // _ivSpDefenseBox
             // 
             this._ivSpDefenseBox.Location = new System.Drawing.Point(323, 49);
-            this._ivSpDefenseBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._ivSpDefenseBox.Margin = new System.Windows.Forms.Padding(2);
             this._ivSpDefenseBox.Maximum = new decimal(new int[] {
             31,
             0,
@@ -143,7 +148,7 @@
             // _ivSpAttackBox
             // 
             this._ivSpAttackBox.Location = new System.Drawing.Point(175, 49);
-            this._ivSpAttackBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._ivSpAttackBox.Margin = new System.Windows.Forms.Padding(2);
             this._ivSpAttackBox.Maximum = new decimal(new int[] {
             31,
             0,
@@ -167,7 +172,7 @@
             // _ivSpeedBox
             // 
             this._ivSpeedBox.Location = new System.Drawing.Point(45, 49);
-            this._ivSpeedBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._ivSpeedBox.Margin = new System.Windows.Forms.Padding(2);
             this._ivSpeedBox.Maximum = new decimal(new int[] {
             31,
             0,
@@ -191,7 +196,7 @@
             // _ivDefenseBox
             // 
             this._ivDefenseBox.Location = new System.Drawing.Point(323, 17);
-            this._ivDefenseBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._ivDefenseBox.Margin = new System.Windows.Forms.Padding(2);
             this._ivDefenseBox.Maximum = new decimal(new int[] {
             31,
             0,
@@ -215,7 +220,7 @@
             // _ivAttackBox
             // 
             this._ivAttackBox.Location = new System.Drawing.Point(175, 17);
-            this._ivAttackBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._ivAttackBox.Margin = new System.Windows.Forms.Padding(2);
             this._ivAttackBox.Maximum = new decimal(new int[] {
             31,
             0,
@@ -242,7 +247,7 @@
             this._pokemonComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this._pokemonComboBox.FormattingEnabled = true;
             this._pokemonComboBox.Location = new System.Drawing.Point(0, 24);
-            this._pokemonComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._pokemonComboBox.Margin = new System.Windows.Forms.Padding(2);
             this._pokemonComboBox.Name = "_pokemonComboBox";
             this._pokemonComboBox.Size = new System.Drawing.Size(92, 21);
             this._pokemonComboBox.TabIndex = 3;
@@ -254,7 +259,7 @@
             this._heldItemComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this._heldItemComboBox.FormattingEnabled = true;
             this._heldItemComboBox.Location = new System.Drawing.Point(0, 48);
-            this._heldItemComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._heldItemComboBox.Margin = new System.Windows.Forms.Padding(2);
             this._heldItemComboBox.Name = "_heldItemComboBox";
             this._heldItemComboBox.Size = new System.Drawing.Size(92, 21);
             this._heldItemComboBox.TabIndex = 4;
@@ -266,7 +271,7 @@
             this._naturesComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this._naturesComboBox.FormattingEnabled = true;
             this._naturesComboBox.Location = new System.Drawing.Point(0, 72);
-            this._naturesComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._naturesComboBox.Margin = new System.Windows.Forms.Padding(2);
             this._naturesComboBox.Name = "_naturesComboBox";
             this._naturesComboBox.Size = new System.Drawing.Size(92, 21);
             this._naturesComboBox.TabIndex = 5;
@@ -278,7 +283,7 @@
             this._typesComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this._typesComboBox.FormattingEnabled = true;
             this._typesComboBox.Location = new System.Drawing.Point(0, 97);
-            this._typesComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._typesComboBox.Margin = new System.Windows.Forms.Padding(2);
             this._typesComboBox.Name = "_typesComboBox";
             this._typesComboBox.Size = new System.Drawing.Size(92, 21);
             this._typesComboBox.TabIndex = 6;
@@ -288,7 +293,7 @@
             // 
             this._exactIVCheckbox.AutoSize = true;
             this._exactIVCheckbox.Location = new System.Drawing.Point(140, 2);
-            this._exactIVCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._exactIVCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this._exactIVCheckbox.Name = "_exactIVCheckbox";
             this._exactIVCheckbox.Size = new System.Drawing.Size(158, 17);
             this._exactIVCheckbox.TabIndex = 7;
@@ -308,10 +313,32 @@
             this._genderComboBox.TabIndex = 8;
             this._genderComboBox.SelectedIndexChanged += new System.EventHandler(this.GenderComboBox_SelectedIndexChanged);
             // 
+            // _shinyHackIcon
+            // 
+            this._shinyHackIcon.Location = new System.Drawing.Point(120, 209);
+            this._shinyHackIcon.Name = "_shinyHackIcon";
+            this._shinyHackIcon.Size = new System.Drawing.Size(18, 17);
+            this._shinyHackIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this._shinyHackIcon.TabIndex = 27;
+            this._shinyHackIcon.TabStop = false;
+            // 
+            // _useShinyHack
+            // 
+            this._useShinyHack.AutoSize = true;
+            this._useShinyHack.Location = new System.Drawing.Point(2, 209);
+            this._useShinyHack.Margin = new System.Windows.Forms.Padding(2);
+            this._useShinyHack.Name = "_useShinyHack";
+            this._useShinyHack.Size = new System.Drawing.Size(113, 17);
+            this._useShinyHack.TabIndex = 26;
+            this._useShinyHack.Text = "Use \"Shiny Hack\"";
+            this._useShinyHack.UseVisualStyleBackColor = true;
+            // 
             // PokemonFilterPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this._shinyHackIcon);
+            this.Controls.Add(this._useShinyHack);
             this.Controls.Add(this._genderComboBox);
             this.Controls.Add(this._exactIVCheckbox);
             this.Controls.Add(this._typesComboBox);
@@ -320,7 +347,7 @@
             this.Controls.Add(this._pokemonComboBox);
             this.Controls.Add(this._statsGroup);
             this.Controls.Add(this._shinyCheckbox);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PokemonFilterPanel";
             this.Size = new System.Drawing.Size(562, 228);
             ((System.ComponentModel.ISupportInitialize)(this._ivHpBox)).EndInit();
@@ -331,6 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)(this._ivSpeedBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ivDefenseBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ivAttackBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._shinyHackIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,5 +386,8 @@
         private System.Windows.Forms.ComboBox _typesComboBox;
         private System.Windows.Forms.CheckBox _exactIVCheckbox;
         private System.Windows.Forms.ComboBox _genderComboBox;
+        private System.Windows.Forms.PictureBox _shinyHackIcon;
+        private System.Windows.Forms.CheckBox _useShinyHack;
+        private System.Windows.Forms.ToolTip _shinyHackTooltip;
     }
 }

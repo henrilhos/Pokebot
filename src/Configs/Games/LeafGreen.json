@@ -1,0 +1,102 @@
+{
+  "Name": "Leaf Green",
+  "Code": 3,
+  "Hashs": [
+    {
+      "Hash": "0802d1fb185ee3ed48d9a22afb25e66424076dac", //Deutch
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokeleafgreen",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "574fa542ffebb14be69902d1d36f1ec0a4afd71e", //USA (Europe)
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokeleafgreen",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "7862c67bdecbe21d1d69ce082ce34327e1c6ed5e", //USA (Europe) (rev 1)
+      "Tested": true,
+      "Symbols": {
+        "Main": "pokeleafgreen_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "4b5758c14d0a07b70ef3ef0bd7fa5e7ce6978672", //French
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokeleafgreen",
+        "Patches": [
+          "patchleafgreen_fr"
+        ]
+      }
+    },
+    {
+      "Hash": "a1dfea1493d26d1f024be8ba1de3d193fcfc651e", //Italian
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokeleafgreen",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "5946f1b59e8d71cc61249661464d864185c92a5f", //Japanese
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokeleafgreen",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "de9d5a844f9bfb63a4448cccd4a2d186ecf455c3", //Japanese (rev 1)
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokeleafgreen_rev1",
+        "Patches": []
+      }
+    },
+    {
+      "Hash": "f9ebee5d228cb695f18ef2ced41630a09fa9eb05", //Spanish
+      "Tested": false,
+      "Symbols": {
+        "Main": "pokeleafgreen",
+        "Patches": []
+      }
+    }
+  ],
+  "Generation": 3,
+  "Starters": [
+    {
+      "PositionIndex": 0,
+      "PokemonId": 1
+    },
+    {
+      "PositionIndex": 1,
+      "PokemonId": 7
+    },
+    {
+      "PositionIndex": 2,
+      "PokemonId": 4
+    }
+  ],
+  "PokeFinderTypes": [
+    {
+      "Name": "None",
+      "FrameAdvance": 0
+    }
+  ],
+  "BotsConfig": {
+    "Starter": {
+      "Position": {
+        "X": 16,
+        "Y": 12
+      },
+      "Facing": 34
+    }
+  }
+}

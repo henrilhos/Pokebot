@@ -1,6 +1,5 @@
 ﻿using BizHawk.Client.Common;
 using Pokebot.Models.Memory;
-using System;
 
 namespace Pokebot.Models.ActionRunners
 {
@@ -23,7 +22,8 @@ namespace Pokebot.Models.ActionRunners
                     if (player.FacingDirection != starterBotConfig.Facing)
                     {
                         PressUp();
-                    } else
+                    }
+                    else
                     {
                         PressA();
                     }

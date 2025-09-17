@@ -171,6 +171,18 @@
   <data name="Discord_ContentWithUser" xml:space="preserve">
     <value>Hey {0} ! {1}</value>
   </data>
+  <data name="Discord_Encountered" xml:space="preserve">
+    <value>Encountered</value>
+  </data>
+  <data name="Discord_EncounteredRatio" xml:space="preserve">
+    <value>Ratio</value>
+  </data>
+  <data name="Discord_Game" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="Discord_Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
   <data name="Discord_Item" xml:space="preserve">
     <value>Item</value>
   </data>
@@ -200,6 +212,9 @@
   </data>
   <data name="Discord_Shiny" xml:space="preserve">
     <value>Shiny</value>
+  </data>
+  <data name="Discord_ShinyEncountered" xml:space="preserve">
+    <value>Shiny Encountered</value>
   </data>
   <data name="Discord_ShinyNo" xml:space="preserve">
     <value>No :x:</value>
@@ -291,6 +306,9 @@
   <data name="SpinBot_UnknowNextMove" xml:space="preserve">
     <value>Can't spin the player, next move is unknown</value>
   </data>
+  <data name="Status_Tested" xml:space="preserve">
+    <value>Tested: {0}</value>
+  </data>
   <data name="Symbols_Empty" xml:space="preserve">
     <value>No symbols found for this game.</value>
   </data>
@@ -314,6 +332,9 @@
   </data>
   <data name="Tooltip_Delay" xml:space="preserve">
     <value>It's better to have some delay between each actions to avoid the bot to freeze while doing input. 0.1 is recommanded.</value>
+  </data>
+  <data name="Tooltip_ShinyHack" xml:space="preserve">
+    <value>Generation 1 and 2 support this option.\nWhile this is enable and you search for shiny, all pokemon \nwill be shiny automatically and legit\n\n(This is because old generation calculate shiny based on IV and not TID/SID)</value>
   </data>
   <data name="Viewer_Ability" xml:space="preserve">
     <value>Ability: {0}</value>

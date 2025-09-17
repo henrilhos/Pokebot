@@ -1,6 +1,5 @@
 ﻿using Pokebot.Factories.Versions;
 using Pokebot.Models.Pokemons;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -47,6 +46,7 @@ namespace Pokebot.Models
                 else
                 {
                     OpponentChanged?.Invoke(null);
+                    CodeOpponent = string.Empty;
                 }
 
                 //Party

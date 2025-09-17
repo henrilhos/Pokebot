@@ -7,11 +7,6 @@ using Pokebot.Models.Pokemons;
 using Pokebot.Panels;
 using Pokebot.Utils;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pokebot.Factories.Bots
@@ -28,6 +23,9 @@ namespace Pokebot.Factories.Bots
         public GameVersion GameVersion { get; }
         public SpinControl Control { get; }
 
+        private Pokemon? _lastEncountered;
+        private int _nbTry;
+
         public FishingBot(ApiContainer apiContainer, GameVersion gameVersion)
         {
             Enabled = false;
@@ -37,6 +35,7 @@ namespace Pokebot.Factories.Bots
             Control = new SpinControl();
             Control.Dock = DockStyle.Fill;
             Control.SetFilterPanel(GameVersion.GenerationInfo);
+            Control.FilterPanel.SetShinyHackVisible(gameVersion.Memory.CanSetShiny());
         }
 
         public void Start()
@@ -59,41 +58,63 @@ namespace Pokebot.Factories.Bots
 
         public void Execute(PlayerData playerData, GameState state)
         {
-            if (GameVersion.Memory.GetTasks().FirstOrDefault(t => t.Name == "Task_ContinueTaskAfterMessagePrints") != null)
+            var fishingState = GameVersion.Memory.GetFishingResult();
+            if (fishingState == FishingState.InvalidTool)
             {
                 Log.Error(Messages.InvalidRegisteredItem);
                 Stop();
                 return;
             }
 
-            var task = GameVersion.Memory.GetTasks().FirstOrDefault(t => t.Name == "Task_Fishing");
-            if (task == null)
+            if (fishingState == FishingState.NotFishing)
             {
                 if (state == GameState.Battle)
                 {
-                    Pokemon pokemon = GameVersion.Memory.GetOpponent();
-                    if (pokemon != null)
+                    try
                     {
-                        PokemonEncountered?.Invoke(pokemon);
-                    }
+                        Pokemon pokemon = GameVersion.Memory.GetOpponent();
+                        if (GameVersion.Memory.CanSetShiny() && Control.FilterPanel.IsShinyHackEnabled() && !pokemon.IsShiny)
+                        {
+                            pokemon = GameVersion.Memory.SetShiny(pokemon);
+                            return;
+                        }
 
-                    if (pokemon != null && Control.FilterPanel.Comparator.Compare(pokemon))
-                    {
-                        Log.Warn(Messages.Pokemon_FoundCatch);
-                        PokemonFound?.Invoke(pokemon);
-                        Stop();
+                        if (pokemon != null && _lastEncountered?.Checksum != pokemon.Checksum)
+                        {
+                            _lastEncountered = pokemon;
+                            PokemonEncountered?.Invoke(pokemon);
+                        }
+
+                        if (pokemon != null && Control.FilterPanel.Comparator.Compare(pokemon))
+                        {
+                            Log.Warn(Messages.Pokemon_FoundCatch);
+                            PokemonFound?.Invoke(pokemon);
+                            Stop();
+                        }
+                        else
+                        {
+                            GameVersion.Runner.Escape();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        GameVersion.Runner.Escape();
+                        //Sometimes when you are fishing the pokemon is not ready
+                        if (_nbTry > 10)
+                        {
+                            throw ex;
+                        }
+                        _nbTry++;
                     }
-                } else
+                }
+                else
                 {
                     GameVersion.Runner.UseRegisteredItem();
+                    _lastEncountered = null;
                 }
             }
-            else if(task.Data[0] == (int)FishingResult.FISHING_STATE_REEL_WINDOW || task.Data[0] == (int)FishingResult.FISHING_STATE_START_ENCOUNTER || task.Data[0] == (int)FishingResult.FISHING_STATE_CLEANUP)
+            else if (fishingState == FishingState.NeedAction)
             {
+                _nbTry = 0;
                 APIContainer.Joypad.SetWhenInactive("A");
             }
         }

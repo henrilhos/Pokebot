@@ -2,7 +2,6 @@
 using Pokebot.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 
@@ -40,6 +39,26 @@ namespace Pokebot.Utils
             return BitConverter.ToUInt16(bytes, 0) & 0xFFFF;
         }
 
+        public static int ToBE16(this IEnumerable<byte> bytesList)
+        {
+            var bytes = bytesList.ToArray();
+            if (bytes.Length < 2)
+            {
+                throw new ArgumentException("Array must be at least 2 bytes long.");
+            }
+            return (bytes[0] << 8) | bytes[1];
+        }
+
+        public static int toBE24(this IEnumerable<byte> bytesList)
+        {
+            var bytes = bytesList.ToArray();
+            if (bytes.Length < 3)
+            {
+                throw new ArgumentException("Array must be at least 3 bytes long.");
+            }
+            return (bytes[0] << 16) | (bytes[1] << 8) | bytes[2];
+        }
+
         public static bool HasSaveState(this IEmuClientApi emuClient, string name)
         {
             var directory = Environment.CurrentDirectory;
@@ -71,9 +90,8 @@ namespace Pokebot.Utils
 
         public static void SetWhenInactive(this IJoypadApi api, string button)
         {
-            var t = api.Get();
             var buttonState = api.Get().FirstOrDefault(x => x.Key == button);
-            if (!(bool) buttonState.Value)
+            if (!(bool)buttonState.Value)
             {
                 api.Set(button, true);
             }

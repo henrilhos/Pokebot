@@ -1,6 +1,7 @@
 ﻿using BizHawk.Client.Common;
 using Pokebot.Models.Memory;
 using Pokebot.Models.Player;
+using Pokebot.Utils;
 using System.Collections.Generic;
 
 namespace Pokebot.Models.ActionRunners
@@ -44,6 +45,8 @@ namespace Pokebot.Models.ActionRunners
             var state = GameVersion.GetGameState();
             if (state == GameState.Battle)
             {
+                GameVersion.TrySetEscape();
+
                 var action = (BattleActionSelectionCursor)GameVersion.GetActionSelectionCursor();
 
                 switch (action)
@@ -74,15 +77,15 @@ namespace Pokebot.Models.ActionRunners
             return true;
         }
 
-        public void PressA() => APIContainer.Joypad.Set("A", true);
-        public void PressB() => APIContainer.Joypad.Set("B", true);
-        public void PressX() => APIContainer.Joypad.Set("X", true);
-        public void PressY() => APIContainer.Joypad.Set("Y", true);
-        public void PressLeft() => APIContainer.Joypad.Set("Left", true);
-        public void PressRight() => APIContainer.Joypad.Set("Right", true);
-        public void PressDown() => APIContainer.Joypad.Set("Down", true);
-        public void PressUp() => APIContainer.Joypad.Set("Up", true);
-        public void PressStart() => APIContainer.Joypad.Set("Start", true);
-        public void PressSelect() => APIContainer.Joypad.Set("Select", true);
+        public void PressA() => APIContainer.Joypad.SetWhenInactive("A");
+        public void PressB() => APIContainer.Joypad.SetWhenInactive("B");
+        public void PressX() => APIContainer.Joypad.SetWhenInactive("X");
+        public void PressY() => APIContainer.Joypad.SetWhenInactive("Y");
+        public void PressLeft() => APIContainer.Joypad.SetWhenInactive("Left");
+        public void PressRight() => APIContainer.Joypad.SetWhenInactive("Right");
+        public void PressDown() => APIContainer.Joypad.SetWhenInactive("Down");
+        public void PressUp() => APIContainer.Joypad.SetWhenInactive("Up");
+        public void PressStart() => APIContainer.Joypad.SetWhenInactive("Start");
+        public void PressSelect() => APIContainer.Joypad.SetWhenInactive("Select");
     }
 }

@@ -32,7 +32,7 @@ namespace Pokebot.Models
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex);
                 return false;
             }
 
@@ -61,7 +61,7 @@ namespace Pokebot.Models
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex);
                 return new SettingsConfig();
             }
         }

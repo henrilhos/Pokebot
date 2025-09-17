@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using BizHawk.Emulation.Common;
+using Newtonsoft.Json;
+using Pokebot.Factories.Versions;
+using Pokebot.Models;
 using Pokebot.Models.Pokemons;
 using System.Collections.Generic;
 
@@ -23,13 +26,18 @@ namespace Pokebot.Services.DiscordWebhook.Models
             Embeds = new List<DiscordWebhookEmbed>();
         }
 
-        public DiscordWebhook(string content, Pokemon pokemon) : this(Messages.AppName, content)
+        public DiscordWebhook(string content, Pokemon pokemon, EncounterStats stats, GameVersion gameVersion, IGameInfo gameInfo) : this(Messages.AppName, content)
         {
             var embed = new DiscordWebhookEmbed($"{pokemon.RealName} ({pokemon.MetLevel})");
-            embed.Thumbnail = new DiscordWebhookImage($"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon.DexId}.png");
+            embed.Thumbnail = new DiscordWebhookImage(
+                pokemon.IsShiny
+                ? $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{pokemon.DexId}.png"
+                : $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon.DexId}.png"
+            );
 
-            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Ability, pokemon.Ability, false));
-            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Nature, pokemon.Nature.Name, false));
+            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Ability, pokemon.Ability ?? "N/A", false));
+            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Nature, pokemon.Nature?.Name ?? "N/A", false));
+            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Gender, pokemon.GetGenderMessage(), false));
             embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Item, pokemon.HeldItem?.Name ?? Messages.Item_Nothing, false));
             embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Shiny, pokemon.IsShiny ? Messages.Discord_ShinyYes : Messages.Discord_ShinyNo, false));
             embed.Fields.Add(new DiscordWebhookField(Messages.Discord_IVHp, pokemon.IVs.HP.ToString(), true));
@@ -38,7 +46,11 @@ namespace Pokebot.Services.DiscordWebhook.Models
             embed.Fields.Add(new DiscordWebhookField(Messages.Discord_IVDefense, pokemon.IVs.Defense.ToString(), true));
             embed.Fields.Add(new DiscordWebhookField(Messages.Discord_IVSpAttack, pokemon.IVs.SpAttack.ToString(), true));
             embed.Fields.Add(new DiscordWebhookField(Messages.Discord_IVSpDefense, pokemon.IVs.SpDefense.ToString(), true));
-            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Trainer, pokemon.OriginalTrainer.Name, false));
+            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Trainer, pokemon.OriginalTrainer?.Name ?? "N/A", true));
+            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Game, gameInfo.Name, false));
+            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_Encountered, stats.Encountered.ToString(), true));
+            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_ShinyEncountered, stats.ShinyEncountered.ToString(), true));
+            embed.Fields.Add(new DiscordWebhookField(Messages.Discord_EncounteredRatio, stats.Ratio, true));
 
             Embeds.Add(embed);
         }

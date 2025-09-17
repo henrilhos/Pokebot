@@ -34,6 +34,51 @@ Place the file `Pokebot.dll` inside `BizHawk/ExternalTools/` folder. Then, open 
 
 # <a name="supported-games"></a>Supported Games
 <details>
+  <summary>Pokemon Gold</summary>
+
+ | Nom          | Hash                                     | Supported | Tested |
+ |--------------|------------------------------------------|-----------|--------|
+ | USA (Europe) | d8b8a3600a465308c9953dfa04f0081c05bdcb94 |     ✅     |    ✅   |
+ | Japan (1.0)  | 8814f1039450a5d3684b1389f588ccd7ee7c3436 |     ✅     |    ✅   |
+ | Japan (1.1)  | a222402235d484ee8e39f3f31bae57cf13daf585 |     ✅     |    ✅   |
+ | French       | c147c0d8c2b71b7628a7233436f5c052b5b17081 |     ✅     |    ❌   |
+ | Deutch       | 9254195d461ea942eaaa08cc4b83de3cf82aea0d |     ✅     |    ❌   |
+ | Italian      | 032608fe8947b627584a4a0eccc7bf9ad3588426 |     ✅     |    ❌   |
+ | Korean       | c0ff3999e1093e1af59ef3eea3f1bfd7c1f18a65 |     ✅     |    ❌   |
+ | Spanish      | 162ea54c6a3cff374642e6dd842f9bffac847e7b |     ✅     |    ❌   |
+</details>
+
+<details>
+  <summary>Pokemon Silver</summary>
+
+ | Nom          | Hash                                     | Supported | Tested |
+ |--------------|------------------------------------------|-----------|--------|
+ | USA (Europe) | 49B163F7E57702BC939D642A18F591DE55D92DAE |     ✅     |    ✅   |
+ | Japan (1.0)  | fa8c51059c1642faa570db56ef089f54d1d2011f |     ✅     |    ✅   |
+ | Japan (1.1)  | a11d5ddc26eb826086593f82370b15d16404d33e |     ✅     |    ✅   |
+ | French       | a4a7e8079b7a53e4d9ef43382bbb1090b9d45d1a |     ✅     |    ❌   |
+ | Deutch       | 8ecc58d621faaedf2a934bd2583d527220df7bb9 |     ✅     |    ❌   |
+ | Italian      | c9eca9d0a837beb9137bb7d779e469c54e9f8d77 |     ✅     |    ❌   |
+ | Korean       | cb22d7e03a74dc3a563fde6be8626626b2b392e7 |     ✅     |    ❌   |
+ | Spanish      | 05bd978ab2cb104b0aff3f696896e30885203a18 |     ✅     |    ❌   |
+</details>
+
+<details>
+  <summary>Pokemon Crystal</summary>
+
+ | Nom          | Hash                                     | Supported | Tested |
+ |--------------|------------------------------------------|-----------|--------|
+ | USA (Europe) | f4cd194bdee0d04ca4eac29e09b8e4e9d818c133 |     ✅     |    ✅   |
+ | USA (1.1)    | f2f52230b536214ef7c9924f483392993e226cfb |     ✅     |    ✅   |
+ | A            | a0fc810f1d4e124434f7be2c989ab5b5892ddf36 |     ✅     |    ✅   |
+ | French       | c055992b16b7399c687647725cdd1f4f13a2f75c |     ✅     |    ❌   |
+ | Deutch       | accb584293ba056152f1fd908439b019017ff2fe |     ✅     |    ❌   |
+ | Italian      | 6cee05e5b95beeae74b8365ad18ec4a07a8c4af8 |     ✅     |    ❌   |
+ | Japanese     | 95127b901bbce2407daf43cce9f45d4c27ef635d |     ✅     |    ❌   |
+ | Spanish      | 889a06fc0bb863666865aa69def0adf97945ac2a |     ✅     |    ❌   |
+</details>
+
+<details>
   <summary>Pokemon Emerald</summary>
 
  | Nom          | Hash                                     | Supported | Tested |
@@ -145,9 +190,11 @@ Place the file `Pokebot.dll` inside `BizHawk/ExternalTools/` folder. Then, open 
   * This bot will start a battle against a static pokemon and check if it matches your set filters. If not, it will change the seed and reload the game in a loop.
 * PokeFinder
   * This bot will press A at the specified frame. Sometimes the hit frame is different from the specified frame. In this case, you can use PokeFinder to find the hit frame and include it in the bot for adjustment. (To use this bot, your emulator must simulate dead battery)
+* Fishing
+  * This bot will use the registered tool (SELECT) and will try to start fishing and wait for battle and see if it matches your set filters. If not, it will leave and retry.
 
 ## <a name="export-save"></a>How to export save file
-BizHawk saves game data in the `GBA/SaveRam` directory. To export this save as a `.sav` extension for most games, you can simply rename the file extension to `.sav` without having to make any changes. 
+BizHawk saves game data in the `GBA/SaveRam` or `Gameboy/SaveRam` directory. To export this save as a `.sav` extension for most games, you can simply rename the file extension to `.sav` without having to make any changes. 
 Sometimes, however, the file may be invalid, so you need to remove the very last line using a hexadecimal editor ([HxD](https://mh-nexus.de/en/hxd/)). 
 You can follow this [tutorial](https://gbatemp.net/threads/cant-make-pokemon-emerald-sav-file-to-work-on-vba.631681/#post-10136922).
 
@@ -156,12 +203,12 @@ The code documentation is available on [Wiki](https://github.com/Kakumi/Pokebot/
 
 # <a name="todo"></a>Todo & Ideas (implementation not comfirmed)
 * Add bot for eggs
-* Add bot for fishing
 * Add bot for exp farm
 * Support translations
 * Add feature to PokeFinder bot to save before the specified frame and not at start.
 * Read seed
 * Transform SaveRam to sav file automatically
+* Gen 1 support
 
 <details>
 	<summary>Done</summary>
@@ -172,6 +219,7 @@ The code documentation is available on [Wiki](https://github.com/Kakumi/Pokebot/
 * Discord Webhook ✔️
 * Add bot for static pokemon️ ✔️
 * Save & load settings to/from config file ✔️
+* Add bot for fishing ✔️
 </details>
 
 # <a name="known-bugs"></a> Known bugs
@@ -181,12 +229,15 @@ _Yeah! There's nothing here!_
 * [BizHawk Documentation](https://github.com/TASEmulators/BizHawk)
 * [Pokemon Decompilation Source Code](https://github.com/pret/pokeemerald)
 * [40Cakes Source Code](https://github.com/40Cakes/pokebot-gen3)
-* [Bulbapedia Pokemon Data Structure](https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_data_structure_(Generation_III))
+* [Pokemon Memory Reader](https://github.com/NathanTBeene/pokemon-memory-reader)
+* [Bulbapedia Pokemon Data Structure GEN 3](https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_data_structure_(Generation_III))
+* [Bulbapedia Pokemon Data Structure GEN 2](https://bulbapedia.bulbagarden.net/wiki/Pokémon_data_structure_(Generation_II))
 * [PokéAPI](https://pokeapi.co/)
 * [PokeFinder](https://github.com/Admiral-Fish/PokeFinder)
 * [Hexa to Decimal Converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
 * [GBA Backup Tool](https://www.gamebrew.org/wiki/GBA_Backup_Tool)
 * [GBA Memory Domains](https://corrupt.wiki/systems/gameboy-advance/bizhawk-memory-domains)
+* [ROM SHA](https://dorando.emuverse.com/html/game-boy.html)
 
 # <a name="license"></a>License
 Pokebot can be used by anyone for any purpose allowed by the permissive MIT License.
