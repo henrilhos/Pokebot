@@ -3,6 +3,7 @@ using Pokebot.Models.Config;
 using Pokebot.Models.Pokemons;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,6 +16,12 @@ namespace Pokebot.Panels
         public PokemonFilterPanel()
         {
             InitializeComponent();
+
+            _shinyHackTooltip.SetToolTip(_shinyHackIcon, Messages.Tooltip_ShinyHack
+                .Replace("\\r\\n", Environment.NewLine)
+                .Replace("\\n", Environment.NewLine)
+                .Replace("\\r", Environment.NewLine));
+            _shinyHackIcon.Image = SystemIcons.Information.ToBitmap();
 
             Comparator = new PokemonComparator();
         }
@@ -153,6 +160,17 @@ namespace Pokebot.Panels
         private void GenderComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Comparator.PokemonGender = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Id;
+        }
+
+        public void SetShinyHackVisible(bool enabled)
+        {
+            _useShinyHack.Visible = enabled;
+            _shinyHackIcon.Visible = enabled;
+        }
+
+        public bool IsShinyHackEnabled()
+        {
+            return _useShinyHack.Checked;
         }
     }
 }

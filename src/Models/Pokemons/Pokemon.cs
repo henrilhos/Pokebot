@@ -45,9 +45,10 @@ namespace Pokebot.Models.Pokemons
         public string? Ability { get; }
         public PokemonType? HiddenPower { get; }
         public int HiddenPowerDamage { get; }
-        public PokemonGender Gender { get; set; }
+        public PokemonGender Gender { get; }
+        public MemoryLocation MemoryLocation { get; }
 
-        public Pokemon(uint pid, PokemonOriginalTrainer? originalTrainer, string nickname, PokemonLanguageCode language, PokemonEggNameType eggName, PokemonMark markings, int checksum, int calculatedChecksum, int species, PokemonItem? heldItem, uint experience, int pPBonuses, int friendship, List<PokemonAttack> moves, PokemonEVS eVs, PokemonCondition? conditions, PokemonPokerus? pokerus, PokemonLocation? metLocation, int metLevel, PokemonOriginInfo? origin, PokemonIVS iVs, bool isEgg, PokemonRibbon? ribbons, string realName, int dexId, bool isShiny, PokemonNature? nature, List<PokemonType> types, string? ability, PokemonType? hiddenPower, int hiddenPowerDamage, PokemonGender gender)
+        public Pokemon(uint pid, PokemonOriginalTrainer? originalTrainer, string nickname, PokemonLanguageCode language, PokemonEggNameType eggName, PokemonMark markings, int checksum, int calculatedChecksum, int species, PokemonItem? heldItem, uint experience, int pPBonuses, int friendship, List<PokemonAttack> moves, PokemonEVS eVs, PokemonCondition? conditions, PokemonPokerus? pokerus, PokemonLocation? metLocation, int metLevel, PokemonOriginInfo? origin, PokemonIVS iVs, bool isEgg, PokemonRibbon? ribbons, string realName, int dexId, bool isShiny, PokemonNature? nature, List<PokemonType> types, string? ability, PokemonType? hiddenPower, int hiddenPowerDamage, PokemonGender gender, MemoryLocation memoryLocation)
         {
             PID = pid;
             OriginalTrainer = originalTrainer;
@@ -81,6 +82,7 @@ namespace Pokebot.Models.Pokemons
             HiddenPower = hiddenPower;
             HiddenPowerDamage = hiddenPowerDamage;
             Gender = gender;
+            MemoryLocation = memoryLocation;
         }
         public string GetGenderMessage()
         {

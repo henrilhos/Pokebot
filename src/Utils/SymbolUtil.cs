@@ -26,7 +26,12 @@ namespace Pokebot.Utils
 
         public static void Write(ApiContainer api, Symbol symbol, byte[] bytes)
         {
-            api.Memory.WriteByteRange(symbol.Address, bytes);
+            Write(api, symbol.Address, bytes);
+        }
+
+        public static void Write(ApiContainer api, long address, byte[] bytes)
+        {
+            api.Memory.WriteByteRange(address, bytes);
         }
 
         public static IReadOnlyList<Symbol> Load(byte[] resource)

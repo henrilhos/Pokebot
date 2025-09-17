@@ -1,17 +1,9 @@
 ﻿using BizHawk.Client.Common;
 using Pokebot.Factories.Versions;
+using Pokebot.Models;
 using Pokebot.Models.Player;
 using Pokebot.Models.Pokemons;
-using Pokebot.Models;
-using Pokebot.Panels;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Pokebot.Utils;
 
 namespace Pokebot.Factories.Bots
 {
@@ -19,6 +11,7 @@ namespace Pokebot.Factories.Bots
     {
         public EeveeBot(ApiContainer apiContainer, GameVersion gameVersion) : base(apiContainer, gameVersion)
         {
+
         }
 
         public override void Execute(PlayerData playerData, GameState state)
@@ -28,7 +21,8 @@ namespace Pokebot.Factories.Bots
             {
                 Pokemon pokemon = GameVersion.Memory.GetParty().FirstOrDefault(x => x.DexId == 133);
                 Check(pokemon);
-            } else
+            }
+            else
             {
                 APIContainer.Joypad.Set("A", true);
             }

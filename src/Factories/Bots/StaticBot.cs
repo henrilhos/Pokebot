@@ -1,17 +1,13 @@
 ﻿using BizHawk.Client.Common;
 using Pokebot.Factories.Versions;
+using Pokebot.Models;
 using Pokebot.Models.Player;
 using Pokebot.Models.Pokemons;
-using Pokebot.Models;
 using Pokebot.Panels;
-using System;
+using Pokebot.Utils;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Pokebot.Utils;
 
 namespace Pokebot.Factories.Bots
 {
@@ -39,6 +35,7 @@ namespace Pokebot.Factories.Bots
             Control = new StaticControl();
             Control.Dock = DockStyle.Fill;
             Control.SetFilterPanel(GameVersion.GenerationInfo);
+            Control.FilterPanel.SetShinyHackVisible(gameVersion.Memory.CanSetShiny());
         }
 
         public void Start()
@@ -81,6 +78,12 @@ namespace Pokebot.Factories.Bots
 
         protected void Check(Pokemon pokemon)
         {
+            if (GameVersion.Memory.CanSetShiny() && Control.FilterPanel.IsShinyHackEnabled() && !pokemon.IsShiny)
+            {
+                pokemon = GameVersion.Memory.SetShiny(pokemon);
+                return;
+            }
+
             if (pokemon != null)
             {
                 PokemonEncountered?.Invoke(pokemon);

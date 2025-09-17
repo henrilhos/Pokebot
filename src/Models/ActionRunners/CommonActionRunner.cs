@@ -45,6 +45,8 @@ namespace Pokebot.Models.ActionRunners
             var state = GameVersion.GetGameState();
             if (state == GameState.Battle)
             {
+                GameVersion.TrySetEscape();
+
                 var action = (BattleActionSelectionCursor)GameVersion.GetActionSelectionCursor();
 
                 switch (action)

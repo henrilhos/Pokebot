@@ -5,7 +5,6 @@ using Pokebot.Models;
 using Pokebot.Models.Player;
 using Pokebot.Panels;
 using Pokebot.Utils;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,6 +40,7 @@ namespace Pokebot.Factories.Bots
             {
                 return GameVersion.GenerationInfo.Pokemons.FirstOrDefault(y => y.Id == x.PokemonId);
             }).Where(x => x != null), false);
+            Control.FilterPanel.SetShinyHackVisible(gameVersion.Memory.CanSetShiny());
         }
 
         public UserControl GetPanel()
@@ -108,6 +108,11 @@ namespace Pokebot.Factories.Bots
             if (starter != null && GameVersion.Runner.ExecuteStarter(starter.PositionIndex))
             {
                 var pokemon = GameVersion.Memory.GetParty()[0];
+                if (GameVersion.Memory.CanSetShiny() && Control.FilterPanel.IsShinyHackEnabled())
+                {
+                    pokemon = GameVersion.Memory.SetShiny(pokemon);
+                }
+
                 PokemonEncountered?.Invoke(pokemon);
                 if (Control.FilterPanel.Comparator.Compare(pokemon))
                 {

@@ -18,11 +18,14 @@ namespace Pokebot.Models.Memory
         GameState GetGameState();
         ICollection<GTask> GetTasks();
         int GetActionSelectionCursor();
+        void TrySetEscape();
         uint GetCurrentSeed();
         uint RandomizeCurrentSeed();
         int GetTID();
         int GetSID();
         IReadOnlyList<Symbol> GetSymbols();
         FishingState GetFishingResult();
+        bool CanSetShiny();
+        Pokemon SetShiny(Pokemon pokemon);
     }
 }

@@ -29,6 +29,7 @@ namespace Pokebot.Models.Memory
         public IReadOnlyList<Symbol> Symbols { get; }
 
         public abstract int GetActionSelectionCursor();
+        public abstract void TrySetEscape();
         public abstract uint GetCurrentSeed();
         public abstract GameState GetGameState();
         public abstract Pokemon GetOpponent();
@@ -112,6 +113,16 @@ namespace Pokebot.Models.Memory
             }
 
             return sb.ToString();
+        }
+
+        public virtual bool CanSetShiny()
+        {
+            return false;
+        }
+
+        public virtual Pokemon SetShiny(Pokemon pokemon)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

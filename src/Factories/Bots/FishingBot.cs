@@ -35,6 +35,7 @@ namespace Pokebot.Factories.Bots
             Control = new SpinControl();
             Control.Dock = DockStyle.Fill;
             Control.SetFilterPanel(GameVersion.GenerationInfo);
+            Control.FilterPanel.SetShinyHackVisible(gameVersion.Memory.CanSetShiny());
         }
 
         public void Start()
@@ -72,6 +73,12 @@ namespace Pokebot.Factories.Bots
                     try
                     {
                         Pokemon pokemon = GameVersion.Memory.GetOpponent();
+                        if (GameVersion.Memory.CanSetShiny() && Control.FilterPanel.IsShinyHackEnabled() && !pokemon.IsShiny)
+                        {
+                            pokemon = GameVersion.Memory.SetShiny(pokemon);
+                            return;
+                        }
+
                         if (pokemon != null && _lastEncountered?.Checksum != pokemon.Checksum)
                         {
                             _lastEncountered = pokemon;
@@ -102,6 +109,7 @@ namespace Pokebot.Factories.Bots
                 else
                 {
                     GameVersion.Runner.UseRegisteredItem();
+                    _lastEncountered = null;
                 }
             }
             else if (fishingState == FishingState.NeedAction)

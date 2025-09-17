@@ -15,6 +15,14 @@ namespace Pokebot.Models.Memory
             base(apiContainer, versionInfo, hashData, generationInfo)
         { }
 
+        public override void TrySetEscape()
+        {
+            var wMenuCursorY = GetSymbol("wMenuCursorY");
+            var wMenuCursorX = GetSymbol("wMenuCursorX");
+            SymbolUtil.Write(APIContainer, wMenuCursorY, new byte[] { 0x02 });
+            SymbolUtil.Write(APIContainer, wMenuCursorX, new byte[] { 0x02 });
+        }
+
         public override int GetActionSelectionCursor()
         {
             // Read cursor positions
@@ -88,25 +96,15 @@ namespace Pokebot.Models.Memory
             var bytesPokemon = SymbolUtil.Read(APIContainer, wEnemyMon);
             var bytesNickname = SymbolUtil.Read(APIContainer, wEnemyMonNickname).TakeWhile(x => x != 0x50);
 
-            return ParseOpponentPokemon(bytesPokemon.ToArray(), bytesNickname.ToArray());
+            return ParseOpponentPokemon(bytesPokemon.ToArray(), bytesNickname.ToArray(), new MemoryLocation(wEnemyMon.Address, 0, wEnemyMon.Size));
         }
 
         public override IReadOnlyList<Pokemon> GetParty()
         {
             var list = new List<Pokemon>();
-
-            var wPartyMon1 = GetSymbol("wPartyMon1");
-            var wPartyMon1Nickname = GetSymbol("wPartyMon1Nickname");
-            var wPartyMonOTs = GetSymbol("wPartyMonOTs");
-
             for (int i = 0; i < GetPartyCount(); i++)
             {
-                var size = wPartyMon1.Size; // Size of a single Pokemon structure in bytes
-                var offset = i * size;
-                var bytesPokemon = SymbolUtil.Read(APIContainer, wPartyMon1.Address, offset, size);
-                var bytesNickname = SymbolUtil.Read(APIContainer, wPartyMon1Nickname.Address, i * wPartyMon1Nickname.Size, wPartyMon1Nickname.Size).TakeWhile(x => x != 0x50);
-                var bytesOT = SymbolUtil.Read(APIContainer, wPartyMonOTs.Address, i * wPartyMonOTs.Size, wPartyMonOTs.Size).TakeWhile(x => x != 0x50);
-                var pokemon = ParsePokemon(bytesPokemon.ToArray(), bytesNickname.ToArray(), bytesOT.ToArray());
+                var pokemon = GetPartyPokemon(i);
                 if (pokemon == null)
                 {
                     break;
@@ -116,6 +114,19 @@ namespace Pokebot.Models.Memory
             }
 
             return list;
+        }
+
+        private Pokemon? GetPartyPokemon(int index)
+        {
+            var wPartyMon1 = GetSymbol("wPartyMon1");
+            var wPartyMon1Nickname = GetSymbol("wPartyMon1Nickname");
+            var wPartyMonOTs = GetSymbol("wPartyMonOTs");
+            var size = wPartyMon1.Size; // Size of a single Pokemon structure in bytes
+            var offset = index * size;
+            var bytesPokemon = SymbolUtil.Read(APIContainer, wPartyMon1.Address, offset, size);
+            var bytesNickname = SymbolUtil.Read(APIContainer, wPartyMon1Nickname.Address, index * wPartyMon1Nickname.Size, wPartyMon1Nickname.Size).TakeWhile(x => x != 0x50);
+            var bytesOT = SymbolUtil.Read(APIContainer, wPartyMonOTs.Address, index * wPartyMonOTs.Size, wPartyMonOTs.Size).TakeWhile(x => x != 0x50);
+            return ParsePokemon(bytesPokemon.ToArray(), bytesNickname.ToArray(), bytesOT.ToArray(), new MemoryLocation(wPartyMon1.Address, offset, size));
         }
 
         private PokemonGender GetGender(byte genderRatio, int atkDV)
@@ -129,7 +140,7 @@ namespace Pokebot.Models.Memory
             return (atkDV <= femaleMaxAtkDV) ? PokemonGender.Female : PokemonGender.Male;
         }
 
-        protected Pokemon ParseOpponentPokemon(byte[] bytesPokemon, byte[] bytesNickname)
+        protected Pokemon ParseOpponentPokemon(byte[] bytesPokemon, byte[] bytesNickname, MemoryLocation memoryLocation)
         {
             var speciesId = bytesPokemon[0x00];
 
@@ -264,11 +275,12 @@ namespace Pokebot.Models.Memory
                 defense,
                 speed,
                 specialAttack,
-                specialDefense
+                specialDefense,
+                memoryLocation
             );
         }
 
-        protected Pokemon? ParsePokemon(byte[] bytesPokemon, byte[] bytesNickname, byte[] bytesOT)
+        protected Pokemon? ParsePokemon(byte[] bytesPokemon, byte[] bytesNickname, byte[] bytesOT, MemoryLocation memoryLocation)
         {
             var speciesId = bytesPokemon[0x00];
             if (speciesId == 0)
@@ -363,8 +375,8 @@ namespace Pokebot.Models.Memory
             var isShiny = defenseIV == 0xA && speedIV == 0xA && specialIV == 0xA &&
                (attackIV == 0x2 || attackIV == 0x3 || attackIV == 0x6 || attackIV == 0x7 ||
                 attackIV == 0xA || attackIV == 0xB || attackIV == 0xE || attackIV == 0xF);
-            var metLevel = (caughtData >> 8) & 0x3F;
-            var metLocation = GenerationInfo.Locations[(caughtData & 0x7F)];
+            //var metLevel = (caughtData >> 8) & 0x3F;
+            //var metLocation = GenerationInfo.Locations[(caughtData & 0x7F)];
             var types = GenerationInfo.Types.Where(t => species.Types.Any(y => t.Name.ToLower() == y.ToLower())).ToList();
             var genderRatio = speciesInfo[0x0D];
             PokemonGender gender = GetGender(genderRatio, attackIV);
@@ -395,8 +407,8 @@ namespace Pokebot.Models.Memory
                 evs,
                 null,
                 pokerusStatus,
-                metLocation,
-                metLevel,
+                null,
+                0,
                 null,
                 ivs,
                 false,
@@ -419,7 +431,8 @@ namespace Pokebot.Models.Memory
                 defense,
                 speed,
                 specialAttack,
-                specialDefense
+                specialDefense,
+                memoryLocation
             );
         }
 
@@ -531,6 +544,36 @@ namespace Pokebot.Models.Memory
         public override FishingState GetFishingResult()
         {
             return FishingState.None;
+        }
+
+        public override bool CanSetShiny()
+        {
+            return true;
+        }
+
+        public override Pokemon SetShiny(Pokemon pokemon)
+        {
+            int attackIV = 0xF;
+            int defenseIV = 0xA;
+            int speedIV = 0xA;
+            int specialIV = 0xA;
+
+            byte atkDef = (byte)((attackIV << 4) | (defenseIV & 0x0F));
+            byte spdSpc = (byte)((speedIV << 4) | (specialIV & 0x0F));
+
+            var wEnemyMon = GetSymbol("wEnemyMon");
+            var opponentPokemon = pokemon.MemoryLocation.Address == wEnemyMon.Address;
+
+            long dvAddr = pokemon.MemoryLocation.Address + (opponentPokemon ? 0x06 : 0x15);
+            SymbolUtil.Write(APIContainer, dvAddr, new byte[] { atkDef, spdSpc });
+
+            // Verification
+            if (opponentPokemon)
+            {
+                return GetOpponent();
+            }
+
+            return GetPartyPokemon(pokemon.MemoryLocation.Offset / pokemon.MemoryLocation.Size) ?? pokemon;
         }
     }
 }

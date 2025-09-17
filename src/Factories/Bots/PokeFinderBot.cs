@@ -3,15 +3,9 @@ using Pokebot.Exceptions;
 using Pokebot.Factories.Versions;
 using Pokebot.Models;
 using Pokebot.Models.Player;
-using Pokebot.Models.Pokemons;
 using Pokebot.Panels;
 using Pokebot.Utils;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pokebot.Factories.Bots
@@ -93,7 +87,8 @@ namespace Pokebot.Factories.Bots
             if (frame == targetFrame)
             {
                 APIContainer.Joypad.Set("A", true);
-            } else if (frame >= targetFrame)
+            }
+            else if (frame >= targetFrame)
             {
                 if (state == GameState.Battle)
                 {

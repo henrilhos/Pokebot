@@ -664,6 +664,15 @@ namespace Pokebot {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generation 1 and 2 support this option.\nWhile this is enable and you search for shiny, all pokemon \nwill be shiny automatically and legit\n\n(This is because old generation calculate shiny based on IV and not TID/SID).
+        /// </summary>
+        internal static string Tooltip_ShinyHack {
+            get {
+                return ResourceManager.GetString("Tooltip_ShinyHack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ability: {0}.
         /// </summary>
         internal static string Viewer_Ability {

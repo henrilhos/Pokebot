@@ -90,7 +90,6 @@ namespace Pokebot.Utils
 
         public static void SetWhenInactive(this IJoypadApi api, string button)
         {
-            var t = api.Get();
             var buttonState = api.Get().FirstOrDefault(x => x.Key == button);
             if (!(bool)buttonState.Value)
             {

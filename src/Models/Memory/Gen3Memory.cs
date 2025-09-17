@@ -21,7 +21,7 @@ namespace Pokebot.Models.Memory
             "EGAM", "EGMA", "EAGM", "EAMG", "EMGA", "EMAG", "MGAE", "MGEA", "MAGE", "MAEG", "MEGA", "MEAG"
         };
 
-        protected Pokemon ParsePokemon(byte[] bytesPokemon)
+        protected Pokemon ParsePokemon(byte[] bytesPokemon, MemoryLocation memoryLocation)
         {
             #region Main Info
             //https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_data_structure_(Generation_III)
@@ -317,7 +317,8 @@ namespace Pokebot.Models.Memory
                     defense,
                     speed,
                     spAttack,
-                    spDefense
+                    spDefense,
+                    memoryLocation
                 );
             }
 
@@ -353,7 +354,8 @@ namespace Pokebot.Models.Memory
                 ability,
                 hiddenPower,
                 hiddenPowerDamage,
-                gender
+                gender,
+                memoryLocation
             );
         }
 
@@ -456,7 +458,7 @@ namespace Pokebot.Models.Memory
                 var offset = i * 100;
                 var bytesPokemon = SymbolUtil.Read(APIContainer, partySYM, offset, 100);
 
-                list.Add(ParsePokemon(bytesPokemon.ToArray()));
+                list.Add(ParsePokemon(bytesPokemon.ToArray(), new MemoryLocation(partySYM.Address, offset, 100)));
             }
 
             return list;
@@ -469,7 +471,7 @@ namespace Pokebot.Models.Memory
 
             var bytesPokemon = SymbolUtil.Read(APIContainer, partySYM, 0, 100);
 
-            return ParsePokemon(bytesPokemon.ToArray());
+            return ParsePokemon(bytesPokemon.ToArray(), new MemoryLocation(partySYM.Address, 0, 100));
         }
 
         protected virtual byte[] DecryptSubStructure(byte[] data, uint key)
@@ -529,6 +531,12 @@ namespace Pokebot.Models.Memory
             }
 
             return tasks;
+        }
+
+        public override void TrySetEscape()
+        {
+            var symbol = Symbols.First(x => x.Name == "gActionSelectionCursor");
+            SymbolUtil.Write(APIContainer, symbol, new byte[] { (int)BattleActionSelectionCursor.Escape });
         }
 
         public override int GetActionSelectionCursor()
