@@ -23,9 +23,9 @@
       "Supported": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
     },
     {
-      "Name": "Eevee",
+      "Name": "Pickup Pokemon",
       "Code": 4,
-      "Supported": [ 3, 4 ]
+      "Supported": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
     },
     {
       "Name": "Fishing",

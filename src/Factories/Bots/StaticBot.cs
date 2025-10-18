@@ -38,7 +38,7 @@ namespace Pokebot.Factories.Bots
             Control.FilterPanel.SetShinyHackVisible(gameVersion.Memory.CanSetShiny());
         }
 
-        public void Start()
+        public virtual void Start()
         {
             Enabled = true;
             StateChanged?.Invoke(Enabled);

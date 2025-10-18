@@ -20,8 +20,8 @@ namespace Pokebot.Factories
                     return new LegendaryBot(apiContainer, gameVersion);
                 case BotCode.PokeFinder:
                     return new PokeFinderBot(apiContainer, gameVersion);
-                case BotCode.Eevee:
-                    return new EeveeBot(apiContainer, gameVersion);
+                case BotCode.PickupPokemon:
+                    return new PickupPokemonBot(apiContainer, gameVersion);
                 case BotCode.Fishing:
                     return new FishingBot(apiContainer, gameVersion);
             }
