@@ -126,6 +126,9 @@
   <data name="BotFactory_NotSupported" xml:space="preserve">
     <value>Bot type is not supported</value>
   </data>
+  <data name="BotPickupPokemon_PartyFull" xml:space="preserve">
+    <value>Your party is full. You need at least 1 empty slot to use this bot.</value>
+  </data>
   <data name="BotPokeFinder_InvalidFrame" xml:space="preserve">
     <value>This frame has already passed. Save the game and reload it (without save state).</value>
   </data>

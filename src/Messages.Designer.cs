@@ -124,6 +124,15 @@ namespace Pokebot {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your party is full. You need at least 1 empty slot to use this bot..
+        /// </summary>
+        internal static string BotPickupPokemon_PartyFull {
+            get {
+                return ResourceManager.GetString("BotPickupPokemon_PartyFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This frame has already passed. Save the game and reload it (without save state)..
         /// </summary>
         internal static string BotPokeFinder_InvalidFrame {

@@ -6,7 +6,7 @@
         Spin = 1,
         Static = 2,
         PokeFinder = 3,
-        Eevee = 4,
+        PickupPokemon = 4,
         Fishing = 5,
     }
 }
