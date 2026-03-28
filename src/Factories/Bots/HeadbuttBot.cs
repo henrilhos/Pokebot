@@ -57,7 +57,7 @@ namespace Pokebot.Factories.Bots
 
         public void Execute(PlayerData playerData, GameState state)
         {
-            if (state == GameState.Battle || state == GameState.BagMenu)
+            if (state == GameState.Battle)
             {
                 try
                 {
@@ -90,8 +90,10 @@ namespace Pokebot.Factories.Bots
                     _nbTry++;
                 }
             }
-            else if (state == GameState.Overworld)
+            else
             {
+                // Press A to headbutt (Overworld) or advance any post-battle dialogue
+                // (Gen 2 post-battle screens return BagMenu state, not Overworld)
                 _nbTry = 0;
                 _lastEncountered = null;
                 GameVersion.Runner.Headbutt();
