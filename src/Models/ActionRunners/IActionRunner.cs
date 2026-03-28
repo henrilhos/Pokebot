@@ -6,5 +6,6 @@
         bool Spin();
         bool Escape();
         bool UseRegisteredItem();
+        bool Headbutt();
     }
 }

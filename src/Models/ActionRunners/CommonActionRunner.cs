@@ -77,6 +77,13 @@ namespace Pokebot.Models.ActionRunners
             return true;
         }
 
+        public virtual bool Headbutt()
+        {
+            PressA();
+
+            return true;
+        }
+
         public void PressA() => APIContainer.Joypad.SetWhenInactive("A");
         public void PressB() => APIContainer.Joypad.SetWhenInactive("B");
         public void PressX() => APIContainer.Joypad.SetWhenInactive("X");

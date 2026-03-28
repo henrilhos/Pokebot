@@ -8,5 +8,6 @@
         PokeFinder = 3,
         PickupPokemon = 4,
         Fishing = 5,
+        Headbutt = 6,
     }
 }
